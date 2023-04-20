@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StgkTransformerMonitorMapper">
+    
+    <resultMap type="StgkTransformerMonitor" id="StgkTransformerMonitorResult">
+        <result property="id"    column="id"    />
+        <result property="transformerId"    column="transformer_id"    />
+        <result property="monitorTime"    column="monitor_time"    />
+        <result property="transformerVoltage"    column="transformer_voltage"    />
+        <result property="transformerACurrent"    column="transformer_a_current"    />
+        <result property="transformerBCurrent"    column="transformer_b_current"    />
+        <result property="transformerCCurrent"    column="transformer_c_current"    />
+        <result property="transformerPower"    column="transformer_power"    />
+        <result property="aBurnerTemperature"    column="a_burner_temperature"    />
+        <result property="bBurnerTemperature"    column="b_burner_temperature"    />
+        <result property="cBurnerTemperature"    column="c_burner_temperature"    />
+        <result property="aOutletTemperature"    column="a_outlet_temperature"    />
+        <result property="bOutletTemperature"    column="b_outlet_temperature"    />
+        <result property="cOutletTemperature"    column="c_outlet_temperature"    />
+        <result property="coreTemperature"    column="core_temperature"    />
+        <result property="ambientTemperature"    column="ambient_temperature"    />
+    </resultMap>
+
+    <sql id="selectStgkTransformerMonitorVo">
+        select id, transformer_id, monitor_time, transformer_voltage, transformer_a_current, transformer_b_current, transformer_c_current, transformer_power, a_burner_temperature, b_burner_temperature, c_burner_temperature, a_outlet_temperature, b_outlet_temperature, c_outlet_temperature, core_temperature, ambient_temperature from stgk_transformer_monitor
+    </sql>
+
+    <select id="selectStgkTransformerMonitorList" parameterType="StgkTransformerMonitor" resultMap="StgkTransformerMonitorResult">
+        <include refid="selectStgkTransformerMonitorVo"/>
+        <where>  
+            <if test="transformerId != null "> and transformer_id = #{transformerId}</if>
+            <if test="monitorTime != null "> and monitor_time = #{monitorTime}</if>
+            <if test="transformerVoltage != null "> and transformer_voltage = #{transformerVoltage}</if>
+            <if test="transformerACurrent != null "> and transformer_a_current = #{transformerACurrent}</if>
+            <if test="transformerBCurrent != null "> and transformer_b_current = #{transformerBCurrent}</if>
+            <if test="transformerCCurrent != null "> and transformer_c_current = #{transformerCCurrent}</if>
+            <if test="transformerPower != null "> and transformer_power = #{transformerPower}</if>
+            <if test="aBurnerTemperature != null "> and a_burner_temperature = #{aBurnerTemperature}</if>
+            <if test="bBurnerTemperature != null "> and b_burner_temperature = #{bBurnerTemperature}</if>
+            <if test="cBurnerTemperature != null "> and c_burner_temperature = #{cBurnerTemperature}</if>
+            <if test="aOutletTemperature != null "> and a_outlet_temperature = #{aOutletTemperature}</if>
+            <if test="bOutletTemperature != null "> and b_outlet_temperature = #{bOutletTemperature}</if>
+            <if test="cOutletTemperature != null "> and c_outlet_temperature = #{cOutletTemperature}</if>
+            <if test="coreTemperature != null "> and core_temperature = #{coreTemperature}</if>
+            <if test="ambientTemperature != null "> and ambient_temperature = #{ambientTemperature}</if>
+        </where>
+    </select>
+    
+    <select id="selectStgkTransformerMonitorById" parameterType="Long" resultMap="StgkTransformerMonitorResult">
+        <include refid="selectStgkTransformerMonitorVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStgkTransformerMonitor" parameterType="StgkTransformerMonitor" useGeneratedKeys="true" keyProperty="id">
+        insert into stgk_transformer_monitor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="transformerId != null">transformer_id,</if>
+            <if test="monitorTime != null">monitor_time,</if>
+            <if test="transformerVoltage != null">transformer_voltage,</if>
+            <if test="transformerACurrent != null">transformer_a_current,</if>
+            <if test="transformerBCurrent != null">transformer_b_current,</if>
+            <if test="transformerCCurrent != null">transformer_c_current,</if>
+            <if test="transformerPower != null">transformer_power,</if>
+            <if test="aBurnerTemperature != null">a_burner_temperature,</if>
+            <if test="bBurnerTemperature != null">b_burner_temperature,</if>
+            <if test="cBurnerTemperature != null">c_burner_temperature,</if>
+            <if test="aOutletTemperature != null">a_outlet_temperature,</if>
+            <if test="bOutletTemperature != null">b_outlet_temperature,</if>
+            <if test="cOutletTemperature != null">c_outlet_temperature,</if>
+            <if test="coreTemperature != null">core_temperature,</if>
+            <if test="ambientTemperature != null">ambient_temperature,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="transformerId != null">#{transformerId},</if>
+            <if test="monitorTime != null">#{monitorTime},</if>
+            <if test="transformerVoltage != null">#{transformerVoltage},</if>
+            <if test="transformerACurrent != null">#{transformerACurrent},</if>
+            <if test="transformerBCurrent != null">#{transformerBCurrent},</if>
+            <if test="transformerCCurrent != null">#{transformerCCurrent},</if>
+            <if test="transformerPower != null">#{transformerPower},</if>
+            <if test="aBurnerTemperature != null">#{aBurnerTemperature},</if>
+            <if test="bBurnerTemperature != null">#{bBurnerTemperature},</if>
+            <if test="cBurnerTemperature != null">#{cBurnerTemperature},</if>
+            <if test="aOutletTemperature != null">#{aOutletTemperature},</if>
+            <if test="bOutletTemperature != null">#{bOutletTemperature},</if>
+            <if test="cOutletTemperature != null">#{cOutletTemperature},</if>
+            <if test="coreTemperature != null">#{coreTemperature},</if>
+            <if test="ambientTemperature != null">#{ambientTemperature},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStgkTransformerMonitor" parameterType="StgkTransformerMonitor">
+        update stgk_transformer_monitor
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="transformerId != null">transformer_id = #{transformerId},</if>
+            <if test="monitorTime != null">monitor_time = #{monitorTime},</if>
+            <if test="transformerVoltage != null">transformer_voltage = #{transformerVoltage},</if>
+            <if test="transformerACurrent != null">transformer_a_current = #{transformerACurrent},</if>
+            <if test="transformerBCurrent != null">transformer_b_current = #{transformerBCurrent},</if>
+            <if test="transformerCCurrent != null">transformer_c_current = #{transformerCCurrent},</if>
+            <if test="transformerPower != null">transformer_power = #{transformerPower},</if>
+            <if test="aBurnerTemperature != null">a_burner_temperature = #{aBurnerTemperature},</if>
+            <if test="bBurnerTemperature != null">b_burner_temperature = #{bBurnerTemperature},</if>
+            <if test="cBurnerTemperature != null">c_burner_temperature = #{cBurnerTemperature},</if>
+            <if test="aOutletTemperature != null">a_outlet_temperature = #{aOutletTemperature},</if>
+            <if test="bOutletTemperature != null">b_outlet_temperature = #{bOutletTemperature},</if>
+            <if test="cOutletTemperature != null">c_outlet_temperature = #{cOutletTemperature},</if>
+            <if test="coreTemperature != null">core_temperature = #{coreTemperature},</if>
+            <if test="ambientTemperature != null">ambient_temperature = #{ambientTemperature},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStgkTransformerMonitorById" parameterType="Long">
+        delete from stgk_transformer_monitor where id = #{id}
+    </delete>
+
+    <delete id="deleteStgkTransformerMonitorByIds" parameterType="String">
+        delete from stgk_transformer_monitor where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <select id="selectTransformerMonitorByIdLimit1" parameterType="Long" resultMap="StgkTransformerMonitorResult">
+        <include refid="selectStgkTransformerMonitorVo"/>
+        where transformer_id = #{transformerId}
+        order by monitor_time desc
+        limit 1
+    </select>
+
+</mapper>

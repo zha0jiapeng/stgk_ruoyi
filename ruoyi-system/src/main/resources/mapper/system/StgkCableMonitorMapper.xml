@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StgkCableMonitorMapper">
+    
+    <resultMap type="StgkCableMonitor" id="StgkCableMonitorResult">
+        <result property="id"    column="id"    />
+        <result property="cableId"    column="cable_id"    />
+        <result property="cableName"    column="cable_name"    />
+        <result property="cableStatus"    column="cable_status"    />
+        <result property="cableMaxTemperature"    column="cable_max_temperature"    />
+        <result property="cableMinTemperature"    column="cable_min_temperature"    />
+        <result property="cableAvgTemperature"    column="cable_avg_temperature"    />
+        <result property="monitorTime"    column="monitor_time"    />
+    </resultMap>
+
+    <sql id="selectStgkCableMonitorVo">
+        select id, cable_id, cable_name, cable_status, cable_max_temperature, cable_min_temperature, cable_avg_temperature, monitor_time from stgk_cable_monitor
+    </sql>
+
+    <select id="selectStgkCableMonitorList" parameterType="StgkCableMonitor" resultMap="StgkCableMonitorResult">
+        <include refid="selectStgkCableMonitorVo"/>
+        <where>  
+            <if test="cableId != null "> and cable_id = #{cableId}</if>
+            <if test="cableName != null  and cableName != ''"> and cable_name like concat('%', #{cableName}, '%')</if>
+            <if test="cableStatus != null "> and cable_status = #{cableStatus}</if>
+            <if test="cableMaxTemperature != null "> and cable_max_temperature = #{cableMaxTemperature}</if>
+            <if test="cableMinTemperature != null "> and cable_min_temperature = #{cableMinTemperature}</if>
+            <if test="cableAvgTemperature != null "> and cable_avg_temperature = #{cableAvgTemperature}</if>
+            <if test="monitorTime != null "> and monitor_time = #{monitorTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectStgkCableMonitorById" parameterType="Long" resultMap="StgkCableMonitorResult">
+        <include refid="selectStgkCableMonitorVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStgkCableMonitor" parameterType="StgkCableMonitor" useGeneratedKeys="true" keyProperty="id">
+        insert into stgk_cable_monitor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cableId != null">cable_id,</if>
+            <if test="cableName != null">cable_name,</if>
+            <if test="cableStatus != null">cable_status,</if>
+            <if test="cableMaxTemperature != null">cable_max_temperature,</if>
+            <if test="cableMinTemperature != null">cable_min_temperature,</if>
+            <if test="cableAvgTemperature != null">cable_avg_temperature,</if>
+            <if test="monitorTime != null">monitor_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cableId != null">#{cableId},</if>
+            <if test="cableName != null">#{cableName},</if>
+            <if test="cableStatus != null">#{cableStatus},</if>
+            <if test="cableMaxTemperature != null">#{cableMaxTemperature},</if>
+            <if test="cableMinTemperature != null">#{cableMinTemperature},</if>
+            <if test="cableAvgTemperature != null">#{cableAvgTemperature},</if>
+            <if test="monitorTime != null">#{monitorTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStgkCableMonitor" parameterType="StgkCableMonitor">
+        update stgk_cable_monitor
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cableId != null">cable_id = #{cableId},</if>
+            <if test="cableName != null">cable_name = #{cableName},</if>
+            <if test="cableStatus != null">cable_status = #{cableStatus},</if>
+            <if test="cableMaxTemperature != null">cable_max_temperature = #{cableMaxTemperature},</if>
+            <if test="cableMinTemperature != null">cable_min_temperature = #{cableMinTemperature},</if>
+            <if test="cableAvgTemperature != null">cable_avg_temperature = #{cableAvgTemperature},</if>
+            <if test="monitorTime != null">monitor_time = #{monitorTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStgkCableMonitorById" parameterType="Long">
+        delete from stgk_cable_monitor where id = #{id}
+    </delete>
+
+    <delete id="deleteStgkCableMonitorByIds" parameterType="String">
+        delete from stgk_cable_monitor where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

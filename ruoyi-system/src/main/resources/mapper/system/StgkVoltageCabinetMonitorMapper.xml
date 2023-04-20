@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StgkVoltageCabinetMonitorMapper">
+    
+    <resultMap type="StgkVoltageCabinetMonitor" id="StgkVoltageCabinetMonitorResult">
+        <result property="id"    column="id"    />
+        <result property="cabinetId"    column="cabinet_id"    />
+        <result property="aCurrent"    column="a_current"    />
+        <result property="bCurrent"    column="b_current"    />
+        <result property="cCurrent"    column="c_current"    />
+        <result property="uabVoltage"    column="uab_voltage"    />
+        <result property="pPower"    column="p_power"    />
+        <result property="cos"    column="cos"    />
+        <result property="rh"    column="rh"    />
+        <result property="pd"    column="pd"    />
+        <result property="breakerUpAcurrent"    column="breaker_up_acurrent"    />
+        <result property="breakerUpBcurrent"    column="breaker_up_bcurrent"    />
+        <result property="breakerUpCcurrent"    column="breaker_up_ccurrent"    />
+        <result property="breakerDownAcurrent"    column="breaker_down_acurrent"    />
+        <result property="breakerDownBcurrent"    column="breaker_down_bcurrent"    />
+        <result property="breakerDownCcurrent"    column="breaker_down_ccurrent"    />
+        <result property="breakerOutAcurrent"    column="breaker_out_acurrent"    />
+        <result property="breakerOutBcurrent"    column="breaker_out_bcurrent"    />
+        <result property="breakerOutCcurrent"    column="breaker_out_ccurrent"    />
+        <result property="closingCoilCurrent"    column="closing_coil_current"    />
+        <result property="openingCoilCurrent"    column="opening_coil_current"    />
+        <result property="storageMotorCurrent"    column="storage_motor_current"    />
+        <result property="displacement"    column="displacement"    />
+        <result property="trip"    column="trip"    />
+        <result property="monitorTime"    column="monitor_time"    />
+    </resultMap>
+
+    <sql id="selectStgkVoltageCabinetMonitorVo">
+        select id, cabinet_id, a_current, b_current, c_current, uab_voltage, p_power, cos, rh, pd, breaker_up_acurrent, breaker_up_bcurrent, breaker_up_ccurrent, breaker_down_acurrent, breaker_down_bcurrent, breaker_down_ccurrent, breaker_out_acurrent, breaker_out_bcurrent, breaker_out_ccurrent, closing_coil_current, opening_coil_current, storage_motor_current, displacement, trip, monitor_time from stgk_voltage_cabinet_monitor
+    </sql>
+
+    <select id="selectStgkVoltageCabinetMonitorList" parameterType="StgkVoltageCabinetMonitor" resultMap="StgkVoltageCabinetMonitorResult">
+        <include refid="selectStgkVoltageCabinetMonitorVo"/>
+        <where>  
+            <if test="cabinetId != null "> and cabinet_id = #{cabinetId}</if>
+            <if test="aCurrent != null "> and a_current = #{aCurrent}</if>
+            <if test="bCurrent != null "> and b_current = #{bCurrent}</if>
+            <if test="cCurrent != null "> and c_current = #{cCurrent}</if>
+            <if test="uabVoltage != null "> and uab_voltage = #{uabVoltage}</if>
+            <if test="pPower != null "> and p_power = #{pPower}</if>
+            <if test="cos != null "> and cos = #{cos}</if>
+            <if test="rh != null "> and rh = #{rh}</if>
+            <if test="pd != null "> and pd = #{pd}</if>
+            <if test="breakerUpAcurrent != null "> and breaker_up_acurrent = #{breakerUpAcurrent}</if>
+            <if test="breakerUpBcurrent != null "> and breaker_up_bcurrent = #{breakerUpBcurrent}</if>
+            <if test="breakerUpCcurrent != null "> and breaker_up_ccurrent = #{breakerUpCcurrent}</if>
+            <if test="breakerDownAcurrent != null "> and breaker_down_acurrent = #{breakerDownAcurrent}</if>
+            <if test="breakerDownBcurrent != null "> and breaker_down_bcurrent = #{breakerDownBcurrent}</if>
+            <if test="breakerDownCcurrent != null "> and breaker_down_ccurrent = #{breakerDownCcurrent}</if>
+            <if test="breakerOutAcurrent != null "> and breaker_out_acurrent = #{breakerOutAcurrent}</if>
+            <if test="breakerOutBcurrent != null "> and breaker_out_bcurrent = #{breakerOutBcurrent}</if>
+            <if test="breakerOutCcurrent != null "> and breaker_out_ccurrent = #{breakerOutCcurrent}</if>
+            <if test="closingCoilCurrent != null "> and closing_coil_current = #{closingCoilCurrent}</if>
+            <if test="openingCoilCurrent != null "> and opening_coil_current = #{openingCoilCurrent}</if>
+            <if test="storageMotorCurrent != null "> and storage_motor_current = #{storageMotorCurrent}</if>
+            <if test="displacement != null "> and displacement = #{displacement}</if>
+            <if test="trip != null "> and trip = #{trip}</if>
+            <if test="monitorTime != null "> and monitor_time = #{monitorTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectStgkVoltageCabinetMonitorById" parameterType="Long" resultMap="StgkVoltageCabinetMonitorResult">
+        <include refid="selectStgkVoltageCabinetMonitorVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStgkVoltageCabinetMonitor" parameterType="StgkVoltageCabinetMonitor" useGeneratedKeys="true" keyProperty="id">
+        insert into stgk_voltage_cabinet_monitor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cabinetId != null">cabinet_id,</if>
+            <if test="aCurrent != null">a_current,</if>
+            <if test="bCurrent != null">b_current,</if>
+            <if test="cCurrent != null">c_current,</if>
+            <if test="uabVoltage != null">uab_voltage,</if>
+            <if test="pPower != null">p_power,</if>
+            <if test="cos != null">cos,</if>
+            <if test="rh != null">rh,</if>
+            <if test="pd != null">pd,</if>
+            <if test="breakerUpAcurrent != null">breaker_up_acurrent,</if>
+            <if test="breakerUpBcurrent != null">breaker_up_bcurrent,</if>
+            <if test="breakerUpCcurrent != null">breaker_up_ccurrent,</if>
+            <if test="breakerDownAcurrent != null">breaker_down_acurrent,</if>
+            <if test="breakerDownBcurrent != null">breaker_down_bcurrent,</if>
+            <if test="breakerDownCcurrent != null">breaker_down_ccurrent,</if>
+            <if test="breakerOutAcurrent != null">breaker_out_acurrent,</if>
+            <if test="breakerOutBcurrent != null">breaker_out_bcurrent,</if>
+            <if test="breakerOutCcurrent != null">breaker_out_ccurrent,</if>
+            <if test="closingCoilCurrent != null">closing_coil_current,</if>
+            <if test="openingCoilCurrent != null">opening_coil_current,</if>
+            <if test="storageMotorCurrent != null">storage_motor_current,</if>
+            <if test="displacement != null">displacement,</if>
+            <if test="trip != null">trip,</if>
+            <if test="monitorTime != null">monitor_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cabinetId != null">#{cabinetId},</if>
+            <if test="aCurrent != null">#{aCurrent},</if>
+            <if test="bCurrent != null">#{bCurrent},</if>
+            <if test="cCurrent != null">#{cCurrent},</if>
+            <if test="uabVoltage != null">#{uabVoltage},</if>
+            <if test="pPower != null">#{pPower},</if>
+            <if test="cos != null">#{cos},</if>
+            <if test="rh != null">#{rh},</if>
+            <if test="pd != null">#{pd},</if>
+            <if test="breakerUpAcurrent != null">#{breakerUpAcurrent},</if>
+            <if test="breakerUpBcurrent != null">#{breakerUpBcurrent},</if>
+            <if test="breakerUpCcurrent != null">#{breakerUpCcurrent},</if>
+            <if test="breakerDownAcurrent != null">#{breakerDownAcurrent},</if>
+            <if test="breakerDownBcurrent != null">#{breakerDownBcurrent},</if>
+            <if test="breakerDownCcurrent != null">#{breakerDownCcurrent},</if>
+            <if test="breakerOutAcurrent != null">#{breakerOutAcurrent},</if>
+            <if test="breakerOutBcurrent != null">#{breakerOutBcurrent},</if>
+            <if test="breakerOutCcurrent != null">#{breakerOutCcurrent},</if>
+            <if test="closingCoilCurrent != null">#{closingCoilCurrent},</if>
+            <if test="openingCoilCurrent != null">#{openingCoilCurrent},</if>
+            <if test="storageMotorCurrent != null">#{storageMotorCurrent},</if>
+            <if test="displacement != null">#{displacement},</if>
+            <if test="trip != null">#{trip},</if>
+            <if test="monitorTime != null">#{monitorTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStgkVoltageCabinetMonitor" parameterType="StgkVoltageCabinetMonitor">
+        update stgk_voltage_cabinet_monitor
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cabinetId != null">cabinet_id = #{cabinetId},</if>
+            <if test="aCurrent != null">a_current = #{aCurrent},</if>
+            <if test="bCurrent != null">b_current = #{bCurrent},</if>
+            <if test="cCurrent != null">c_current = #{cCurrent},</if>
+            <if test="uabVoltage != null">uab_voltage = #{uabVoltage},</if>
+            <if test="pPower != null">p_power = #{pPower},</if>
+            <if test="cos != null">cos = #{cos},</if>
+            <if test="rh != null">rh = #{rh},</if>
+            <if test="pd != null">pd = #{pd},</if>
+            <if test="breakerUpAcurrent != null">breaker_up_acurrent = #{breakerUpAcurrent},</if>
+            <if test="breakerUpBcurrent != null">breaker_up_bcurrent = #{breakerUpBcurrent},</if>
+            <if test="breakerUpCcurrent != null">breaker_up_ccurrent = #{breakerUpCcurrent},</if>
+            <if test="breakerDownAcurrent != null">breaker_down_acurrent = #{breakerDownAcurrent},</if>
+            <if test="breakerDownBcurrent != null">breaker_down_bcurrent = #{breakerDownBcurrent},</if>
+            <if test="breakerDownCcurrent != null">breaker_down_ccurrent = #{breakerDownCcurrent},</if>
+            <if test="breakerOutAcurrent != null">breaker_out_acurrent = #{breakerOutAcurrent},</if>
+            <if test="breakerOutBcurrent != null">breaker_out_bcurrent = #{breakerOutBcurrent},</if>
+            <if test="breakerOutCcurrent != null">breaker_out_ccurrent = #{breakerOutCcurrent},</if>
+            <if test="closingCoilCurrent != null">closing_coil_current = #{closingCoilCurrent},</if>
+            <if test="openingCoilCurrent != null">opening_coil_current = #{openingCoilCurrent},</if>
+            <if test="storageMotorCurrent != null">storage_motor_current = #{storageMotorCurrent},</if>
+            <if test="displacement != null">displacement = #{displacement},</if>
+            <if test="trip != null">trip = #{trip},</if>
+            <if test="monitorTime != null">monitor_time = #{monitorTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStgkVoltageCabinetMonitorById" parameterType="Long">
+        delete from stgk_voltage_cabinet_monitor where id = #{id}
+    </delete>
+
+    <delete id="deleteStgkVoltageCabinetMonitorByIds" parameterType="String">
+        delete from stgk_voltage_cabinet_monitor where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getGraph" parameterType="Long" resultType="map">
+        SELECT
+        DATE_FORMAT(monitor_time, '%Y-%m-%d %H:00:00') AS monitor_hour,
+        avg(#{column})
+        FROM
+        stgk_voltage_cabinet_monitor
+        where
+        cabinet_id = #{cabinetId}
+        group by
+        monitor_hour
+    </select>
+</mapper>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StgkCableMapper">
+    
+    <resultMap type="StgkCable" id="StgkCableResult">
+        <result property="id"    column="id"    />
+        <result property="cableNumber"    column="cable_number"    />
+        <result property="cableName"    column="cable_name"    />
+        <result property="cableStatus"    column="cable_status"    />
+        <result property="cableRemark"    column="cable_remark"    />
+        <result property="cableVoltageLevel"    column="cable_voltage_level"    />
+        <result property="cableLength"    column="cable_length"    />
+        <result property="cableEarlyWarning"    column="cable_early_warning"    />
+        <result property="cableReportWarning"    column="cable_report_warning"    />
+        <result property="cableAlarmWarning"    column="cable_alarm_warning"    />
+        <result property="cableMaxTemperature"    column="cable_max_temperature"    />
+        <result property="cableMinTemperature"    column="cable_min_temperature"    />
+        <result property="cableAvgTemperature"    column="cable_avg_temperature"    />
+    </resultMap>
+
+    <sql id="selectStgkCableVo">
+        select id, cable_number, cable_name, cable_status, cable_remark, cable_voltage_level, cable_length, cable_early_warning, cable_report_warning, cable_alarm_warning, cable_max_temperature, cable_min_temperature, cable_avg_temperature from stgk_cable
+    </sql>
+
+    <select id="selectStgkCableList" parameterType="StgkCable" resultMap="StgkCableResult">
+        <include refid="selectStgkCableVo"/>
+        <where>  
+            <if test="cableNumber != null  and cableNumber != ''"> and cable_number = #{cableNumber}</if>
+            <if test="cableName != null  and cableName != ''"> and cable_name like concat('%', #{cableName}, '%')</if>
+            <if test="cableStatus != null "> and cable_status = #{cableStatus}</if>
+            <if test="cableRemark != null  and cableRemark != ''"> and cable_remark = #{cableRemark}</if>
+            <if test="cableVoltageLevel != null  and cableVoltageLevel != ''"> and cable_voltage_level = #{cableVoltageLevel}</if>
+            <if test="cableLength != null "> and cable_length = #{cableLength}</if>
+            <if test="cableEarlyWarning != null "> and cable_early_warning = #{cableEarlyWarning}</if>
+            <if test="cableReportWarning != null "> and cable_report_warning = #{cableReportWarning}</if>
+            <if test="cableAlarmWarning != null "> and cable_alarm_warning = #{cableAlarmWarning}</if>
+            <if test="cableMaxTemperature != null "> and cable_max_temperature = #{cableMaxTemperature}</if>
+            <if test="cableMinTemperature != null "> and cable_min_temperature = #{cableMinTemperature}</if>
+            <if test="cableAvgTemperature != null "> and cable_avg_temperature = #{cableAvgTemperature}</if>
+        </where>
+    </select>
+    
+    <select id="selectStgkCableById" parameterType="Long" resultMap="StgkCableResult">
+        <include refid="selectStgkCableVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStgkCable" parameterType="StgkCable">
+        insert into stgk_cable
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="cableNumber != null">cable_number,</if>
+            <if test="cableName != null">cable_name,</if>
+            <if test="cableStatus != null">cable_status,</if>
+            <if test="cableRemark != null">cable_remark,</if>
+            <if test="cableVoltageLevel != null">cable_voltage_level,</if>
+            <if test="cableLength != null">cable_length,</if>
+            <if test="cableEarlyWarning != null">cable_early_warning,</if>
+            <if test="cableReportWarning != null">cable_report_warning,</if>
+            <if test="cableAlarmWarning != null">cable_alarm_warning,</if>
+            <if test="cableMaxTemperature != null">cable_max_temperature,</if>
+            <if test="cableMinTemperature != null">cable_min_temperature,</if>
+            <if test="cableAvgTemperature != null">cable_avg_temperature,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="cableNumber != null">#{cableNumber},</if>
+            <if test="cableName != null">#{cableName},</if>
+            <if test="cableStatus != null">#{cableStatus},</if>
+            <if test="cableRemark != null">#{cableRemark},</if>
+            <if test="cableVoltageLevel != null">#{cableVoltageLevel},</if>
+            <if test="cableLength != null">#{cableLength},</if>
+            <if test="cableEarlyWarning != null">#{cableEarlyWarning},</if>
+            <if test="cableReportWarning != null">#{cableReportWarning},</if>
+            <if test="cableAlarmWarning != null">#{cableAlarmWarning},</if>
+            <if test="cableMaxTemperature != null">#{cableMaxTemperature},</if>
+            <if test="cableMinTemperature != null">#{cableMinTemperature},</if>
+            <if test="cableAvgTemperature != null">#{cableAvgTemperature},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStgkCable" parameterType="StgkCable">
+        update stgk_cable
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cableNumber != null">cable_number = #{cableNumber},</if>
+            <if test="cableName != null">cable_name = #{cableName},</if>
+            <if test="cableStatus != null">cable_status = #{cableStatus},</if>
+            <if test="cableRemark != null">cable_remark = #{cableRemark},</if>
+            <if test="cableVoltageLevel != null">cable_voltage_level = #{cableVoltageLevel},</if>
+            <if test="cableLength != null">cable_length = #{cableLength},</if>
+            <if test="cableEarlyWarning != null">cable_early_warning = #{cableEarlyWarning},</if>
+            <if test="cableReportWarning != null">cable_report_warning = #{cableReportWarning},</if>
+            <if test="cableAlarmWarning != null">cable_alarm_warning = #{cableAlarmWarning},</if>
+            <if test="cableMaxTemperature != null">cable_max_temperature = #{cableMaxTemperature},</if>
+            <if test="cableMinTemperature != null">cable_min_temperature = #{cableMinTemperature},</if>
+            <if test="cableAvgTemperature != null">cable_avg_temperature = #{cableAvgTemperature},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStgkCableById" parameterType="Long">
+        delete from stgk_cable where id = #{id}
+    </delete>
+
+    <delete id="deleteStgkCableByIds" parameterType="String">
+        delete from stgk_cable where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getIndexMaxTemperature"  resultType="map">
+        SELECT
+            sensor_index,max(cable_temperature ) cable_temperature
+        FROM
+            stgk_cable_index_monitor
+        where
+            cable_id = #{id}
+        AND monitor_time > DATE_SUB( now(), INTERVAL 15 DAY )
+        group by
+          sensor_index
+    </select>
+
+
+    <select id="getTimeTemperature"  resultType="map">
+        SELECT
+            DATE_FORMAT(monitor_time, '%Y-%m-%d %H:00:00') AS monitor_hour,
+            max(cable_temperature) cable_max_temperature,
+            min(cable_temperature) cable_min_temperature,
+            AVG(cable_temperature) cable_avg_temperature
+        FROM
+            stgk_cable_index_monitor
+        where
+            cable_id = #{id}
+        AND monitor_time > DATE_SUB( now(), INTERVAL 15 DAY )
+        group by
+            monitor_hour
+    </select>
+
+    <select id="getTimeCurrent" resultType="map">
+        SELECT
+            DATE_FORMAT(monitor_time, '%Y-%m-%d %H:00:00') AS monitor_hour,
+            max(cable_temperature) cable_max_temperature,
+            max(cable_current) cable_current
+        FROM
+            stgk_cable_index_monitor
+        where
+            cable_id = #{id}
+        AND monitor_time > DATE_SUB( now(), INTERVAL 15 DAY )
+        group by
+            monitor_hour
+    </select>
+</mapper>

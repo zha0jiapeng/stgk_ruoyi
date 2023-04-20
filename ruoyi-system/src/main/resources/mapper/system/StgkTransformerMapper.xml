@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StgkTransformerMapper">
+    
+    <resultMap type="StgkTransformer" id="StgkTransformerResult">
+        <result property="id"    column="id"    />
+        <result property="transformerName"    column="transformer_name"    />
+        <result property="transformerStatus"    column="transformer_status"    />
+        <result property="transformerRepairtime"    column="transformer_repairtime"    />
+        <result property="ratedCurrent"    column="rated_current"    />
+        <result property="onloadRuntime"    column="onload_runtime"    />
+        <result property="offloadRuntime"    column="offload_runtime"    />
+        <result property="exitRuntime"    column="exit_runtime"    />
+        <result property="overloadNum"    column="overload_num"    />
+        <result property="overloadTime"    column="overload_time"    />
+        <result property="overloadDamage"    column="overload_damage"    />
+        <result property="transformerVolume"    column="transformer_volume"    />
+        <result property="slaveId"    column="slave_id"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+
+    <sql id="selectStgkTransformerVo">
+        select id, transformer_name, transformer_status, transformer_repairtime, rated_current, onload_runtime, offload_runtime, exit_runtime, overload_num, overload_time, overload_damage, transformer_volume, slave_id, create_time, create_by, update_time, update_by from stgk_transformer
+    </sql>
+
+    <select id="selectStgkTransformerList" parameterType="StgkTransformer" resultMap="StgkTransformerResult">
+        <include refid="selectStgkTransformerVo"/>
+        <where>  
+            <if test="transformerName != null  and transformerName != ''"> and transformer_name like concat('%', #{transformerName}, '%')</if>
+            <if test="transformerStatus != null "> and transformer_status = #{transformerStatus}</if>
+            <if test="transformerRepairtime != null "> and transformer_repairtime = #{transformerRepairtime}</if>
+            <if test="ratedCurrent != null "> and rated_current = #{ratedCurrent}</if>
+            <if test="onloadRuntime != null "> and onload_runtime = #{onloadRuntime}</if>
+            <if test="offloadRuntime != null "> and offload_runtime = #{offloadRuntime}</if>
+            <if test="exitRuntime != null "> and exit_runtime = #{exitRuntime}</if>
+            <if test="overloadNum != null "> and overload_num = #{overloadNum}</if>
+            <if test="overloadTime != null "> and overload_time = #{overloadTime}</if>
+            <if test="overloadDamage != null "> and overload_damage = #{overloadDamage}</if>
+            <if test="transformerVolume != null "> and transformer_volume = #{transformerVolume}</if>
+            <if test="slaveId != null "> and slave_id = #{slaveId}</if>
+        </where>
+    </select>
+    
+    <select id="selectStgkTransformerById" parameterType="Long" resultMap="StgkTransformerResult">
+        <include refid="selectStgkTransformerVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStgkTransformer" parameterType="StgkTransformer" useGeneratedKeys="true" keyProperty="id">
+        insert into stgk_transformer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="transformerName != null and transformerName != ''">transformer_name,</if>
+            <if test="transformerStatus != null">transformer_status,</if>
+            <if test="transformerRepairtime != null">transformer_repairtime,</if>
+            <if test="ratedCurrent != null">rated_current,</if>
+            <if test="onloadRuntime != null">onload_runtime,</if>
+            <if test="offloadRuntime != null">offload_runtime,</if>
+            <if test="exitRuntime != null">exit_runtime,</if>
+            <if test="overloadNum != null">overload_num,</if>
+            <if test="overloadTime != null">overload_time,</if>
+            <if test="overloadDamage != null">overload_damage,</if>
+            <if test="transformerVolume != null">transformer_volume,</if>
+            <if test="slaveId != null">slave_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="transformerName != null and transformerName != ''">#{transformerName},</if>
+            <if test="transformerStatus != null">#{transformerStatus},</if>
+            <if test="transformerRepairtime != null">#{transformerRepairtime},</if>
+            <if test="ratedCurrent != null">#{ratedCurrent},</if>
+            <if test="onloadRuntime != null">#{onloadRuntime},</if>
+            <if test="offloadRuntime != null">#{offloadRuntime},</if>
+            <if test="exitRuntime != null">#{exitRuntime},</if>
+            <if test="overloadNum != null">#{overloadNum},</if>
+            <if test="overloadTime != null">#{overloadTime},</if>
+            <if test="overloadDamage != null">#{overloadDamage},</if>
+            <if test="transformerVolume != null">#{transformerVolume},</if>
+            <if test="slaveId != null">#{slaveId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStgkTransformer" parameterType="StgkTransformer">
+        update stgk_transformer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="transformerName != null and transformerName != ''">transformer_name = #{transformerName},</if>
+            <if test="transformerStatus != null">transformer_status = #{transformerStatus},</if>
+            <if test="transformerRepairtime != null">transformer_repairtime = #{transformerRepairtime},</if>
+            <if test="ratedCurrent != null">rated_current = #{ratedCurrent},</if>
+            <if test="onloadRuntime != null">onload_runtime = #{onloadRuntime},</if>
+            <if test="offloadRuntime != null">offload_runtime = #{offloadRuntime},</if>
+            <if test="exitRuntime != null">exit_runtime = #{exitRuntime},</if>
+            <if test="overloadNum != null">overload_num = #{overloadNum},</if>
+            <if test="overloadTime != null">overload_time = #{overloadTime},</if>
+            <if test="overloadDamage != null">overload_damage = #{overloadDamage},</if>
+            <if test="transformerVolume != null">transformer_volume = #{transformerVolume},</if>
+            <if test="slaveId != null">slave_id = #{slaveId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStgkTransformerById" parameterType="Long">
+        delete from stgk_transformer where id = #{id}
+    </delete>
+
+    <delete id="deleteStgkTransformerByIds" parameterType="String">
+        delete from stgk_transformer where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="getRuntimingRate" resultType="map">
+    SELECT
+        DATE_FORMAT( monitor_time, '%Y-%m-%d %H:00:00' ) AS monitor_hour,
+        cast(
+        avg( transformer_power ) AS DECIMAL ( 18, 4 )) transformer_power,
+        cast(
+        avg(((( transformer_a_current + transformer_b_current + transformer_c_current )/ 3 )* transformer_voltage * transformer_power )/ st.transformer_volume ) AS DECIMAL ( 18, 4 )) transformer_loadrate
+    FROM
+        stgk_transformer_monitor stm
+        LEFT JOIN stgk_transformer st ON stm.transformer_id = st.id
+    WHERE
+        transformer_id = #{id}
+    GROUP BY
+        monitor_hour
+    </select>
+
+    <select id="getTemperatureRate" resultType="map">
+      SELECT
+            DATE_FORMAT( monitor_time, '%Y-%m-%d %H:00:00' ) AS monitor_hour,
+                    cast(avg(a_burner_temperature) as DECIMAL ( 12, 2 )) a_burner_temperature,
+                    cast(avg(b_burner_temperature) as DECIMAL ( 12, 2 )) b_burner_temperature,
+                    cast(avg(c_burner_temperature) as DECIMAL ( 12, 2 )) c_burner_temperature,
+                    cast(avg(a_outlet_temperature) as DECIMAL ( 12, 2 )) a_outlet_temperature,
+                    cast(avg(b_outlet_temperature) as DECIMAL ( 12, 2 )) b_outlet_temperature,
+                    cast(avg(c_outlet_temperature) as DECIMAL ( 12, 2 )) c_outlet_temperature,
+                    cast(avg(core_temperature) as DECIMAL ( 12, 2 )) core_temperature,
+                    cast(avg(ambient_temperature) as DECIMAL ( 12, 2 )) ambient_temperature,
+                    cast((( transformer_a_current + transformer_b_current + transformer_c_current )/ 3 ) as DECIMAL ( 12, 2 )) transformer_current
+        FROM
+            stgk_transformer_monitor
+        WHERE
+            transformer_id = #{id}
+        GROUP BY
+            monitor_hour
+    </select>
+    <select id="getRedTemperatureRate" resultType="map">
+      SELECT
+            DATE_FORMAT( monitor_time, '%Y-%m-%d %H:00:00' ) AS monitor_hour,
+                    cast(avg(red_temperature) as DECIMAL ( 12, 2 )) red_temperature
+        FROM
+            stgk_transformer_monitor
+        WHERE
+            transformer_id = #{id}
+        GROUP BY
+            monitor_hour
+    </select>
+
+</mapper>

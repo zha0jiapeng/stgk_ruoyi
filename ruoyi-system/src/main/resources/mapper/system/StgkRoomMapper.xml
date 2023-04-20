@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StgkRoomMapper">
+    
+    <resultMap type="StgkRoom" id="StgkRoomResult">
+        <result property="id"    column="id"    />
+        <result property="roomName"    column="room_name"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+
+    <sql id="selectStgkRoomVo">
+        select id, room_name, create_time, create_by, update_time, update_by from stgk_room
+    </sql>
+
+    <select id="selectStgkRoomList" parameterType="StgkRoom" resultMap="StgkRoomResult">
+        <include refid="selectStgkRoomVo"/>
+        <where>  
+            <if test="roomName != null  and roomName != ''"> and room_name like concat('%', #{roomName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectStgkRoomById" parameterType="Long" resultMap="StgkRoomResult">
+        <include refid="selectStgkRoomVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStgkRoom" parameterType="StgkRoom" useGeneratedKeys="true" keyProperty="id">
+        insert into stgk_room
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roomName != null">room_name,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roomName != null">#{roomName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStgkRoom" parameterType="StgkRoom">
+        update stgk_room
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="roomName != null">room_name = #{roomName},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStgkRoomById" parameterType="Long">
+        delete from stgk_room where id = #{id}
+    </delete>
+
+    <delete id="deleteStgkRoomByIds" parameterType="String">
+        delete from stgk_room where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
