@@ -7,7 +7,7 @@ import com.ruoyi.system.domain.StgkVoltageCabinet;
  * 高压柜Mapper接口
  * 
  * @author ruoyi
- * @date 2023-04-20
+ * @date 2023-04-25
  */
 public interface StgkVoltageCabinetMapper 
 {

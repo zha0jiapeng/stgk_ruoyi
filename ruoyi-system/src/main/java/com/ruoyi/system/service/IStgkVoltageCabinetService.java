@@ -1,22 +1,19 @@
 package com.ruoyi.system.service;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
-
 import com.ruoyi.system.domain.StgkVoltageCabinet;
 
 /**
  * 高压柜Service接口
- *
+ * 
  * @author ruoyi
- * @date 2023-04-20
+ * @date 2023-04-25
  */
-public interface IStgkVoltageCabinetService
+public interface IStgkVoltageCabinetService 
 {
     /**
      * 查询高压柜
-     *
+     * 
      * @param id 高压柜主键
      * @return 高压柜
      */
@@ -24,7 +21,7 @@ public interface IStgkVoltageCabinetService
 
     /**
      * 查询高压柜列表
-     *
+     * 
      * @param stgkVoltageCabinet 高压柜
      * @return 高压柜集合
      */
@@ -32,7 +29,7 @@ public interface IStgkVoltageCabinetService
 
     /**
      * 新增高压柜
-     *
+     * 
      * @param stgkVoltageCabinet 高压柜
      * @return 结果
      */
@@ -40,7 +37,7 @@ public interface IStgkVoltageCabinetService
 
     /**
      * 修改高压柜
-     *
+     * 
      * @param stgkVoltageCabinet 高压柜
      * @return 结果
      */
@@ -48,7 +45,7 @@ public interface IStgkVoltageCabinetService
 
     /**
      * 批量删除高压柜
-     *
+     * 
      * @param ids 需要删除的高压柜主键集合
      * @return 结果
      */
@@ -56,11 +53,9 @@ public interface IStgkVoltageCabinetService
 
     /**
      * 删除高压柜信息
-     *
+     * 
      * @param id 高压柜主键
      * @return 结果
      */
     public int deleteStgkVoltageCabinetById(Long id);
-
-    List<Map<String, BigDecimal>> getGraph(String column,Long id);
 }

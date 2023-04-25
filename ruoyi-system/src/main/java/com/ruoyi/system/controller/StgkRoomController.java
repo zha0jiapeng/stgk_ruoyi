@@ -2,6 +2,8 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * 配电室Controller
  * 
  * @author ruoyi
- * @date 2023-04-19
+ * @date 2023-04-23
  */
 @RestController
 @RequestMapping("/system/room")
@@ -101,4 +103,16 @@ public class StgkRoomController extends BaseController
     {
         return toAjax(stgkRoomService.deleteStgkRoomByIds(ids));
     }
+
+
+
+
+    @PreAuthorize("@ss.hasPermi('system:room:query')")
+    @GetMapping(value = "/getTimeTemperatureAndHumidity/{id}")
+    @ApiOperation("获取每小时与温度湿度曲线")
+    public AjaxResult getTimeTemperatureAndHumidity(@PathVariable("id") Long id)
+    {
+        return success(stgkRoomService.getTimeTemperatureAndHumidity(id));
+    }
+
 }

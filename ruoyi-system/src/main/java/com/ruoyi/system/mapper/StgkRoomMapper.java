@@ -7,7 +7,7 @@ import com.ruoyi.system.domain.StgkRoom;
  * 配电室Mapper接口
  * 
  * @author ruoyi
- * @date 2023-04-19
+ * @date 2023-04-23
  */
 public interface StgkRoomMapper 
 {

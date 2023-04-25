@@ -1,5 +1,6 @@
 package com.ruoyi.system.domain;
 
+import java.math.BigDecimal;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
@@ -9,7 +10,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 高压柜对象 stgk_voltage_cabinet
  * 
  * @author ruoyi
- * @date 2023-04-20
+ * @date 2023-04-25
  */
 public class StgkVoltageCabinet extends BaseEntity
 {
@@ -27,7 +28,20 @@ public class StgkVoltageCabinet extends BaseEntity
     private String cabinetName;
 
     /** 状态 */
+    @Excel(name = "状态")
     private Long cabinetStatus;
+
+    /** 额定电流 */
+    @Excel(name = "额定电流")
+    private BigDecimal current;
+
+    /** 额定电压 */
+    @Excel(name = "额定电压")
+    private BigDecimal voltage;
+
+    /** 额定功率 */
+    @Excel(name = "额定功率")
+    private BigDecimal power;
 
     public void setId(Long id) 
     {
@@ -65,6 +79,33 @@ public class StgkVoltageCabinet extends BaseEntity
     {
         return cabinetStatus;
     }
+    public void setCurrent(BigDecimal current) 
+    {
+        this.current = current;
+    }
+
+    public BigDecimal getCurrent() 
+    {
+        return current;
+    }
+    public void setVoltage(BigDecimal voltage) 
+    {
+        this.voltage = voltage;
+    }
+
+    public BigDecimal getVoltage() 
+    {
+        return voltage;
+    }
+    public void setPower(BigDecimal power) 
+    {
+        this.power = power;
+    }
+
+    public BigDecimal getPower() 
+    {
+        return power;
+    }
 
     @Override
     public String toString() {
@@ -73,6 +114,9 @@ public class StgkVoltageCabinet extends BaseEntity
             .append("roomId", getRoomId())
             .append("cabinetName", getCabinetName())
             .append("cabinetStatus", getCabinetStatus())
+            .append("current", getCurrent())
+            .append("voltage", getVoltage())
+            .append("power", getPower())
             .append("createTime", getCreateTime())
             .append("createBy", getCreateBy())
             .append("updateTime", getUpdateTime())

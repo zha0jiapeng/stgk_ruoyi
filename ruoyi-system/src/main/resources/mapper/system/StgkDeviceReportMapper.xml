@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StgkDeviceReportMapper">
+    
+    <resultMap type="StgkDeviceReport" id="StgkDeviceReportResult">
+        <result property="id"    column="id"    />
+        <result property="deviceId"    column="device_id"    />
+        <result property="typeId"    column="type_id"    />
+        <result property="temperature"    column="temperature"    />
+        <result property="earlyWarning"    column="early_warning"    />
+        <result property="reportWarning"    column="report_warning"    />
+        <result property="alarmWarning"    column="alarm_warning"    />
+        <result property="reportFieldName"    column="report_field_name"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+
+    <sql id="selectStgkDeviceReportVo">
+        select id, device_id, type_id, temperature, early_warning, report_warning, alarm_warning, report_field_name, create_time, create_by, update_time, update_by from stgk_device_report
+    </sql>
+
+    <select id="selectStgkDeviceReportList" parameterType="StgkDeviceReport" resultMap="StgkDeviceReportResult">
+        <include refid="selectStgkDeviceReportVo"/>
+        <where>  
+            <if test="deviceId != null "> and device_id = #{deviceId}</if>
+            <if test="typeId != null "> and type_id = #{typeId}</if>
+            <if test="temperature != null "> and temperature = #{temperature}</if>
+            <if test="earlyWarning != null "> and early_warning = #{earlyWarning}</if>
+            <if test="reportWarning != null "> and report_warning = #{reportWarning}</if>
+            <if test="alarmWarning != null "> and alarm_warning = #{alarmWarning}</if>
+            <if test="reportFieldName != null  and reportFieldName != ''"> and report_field_name like concat('%', #{reportFieldName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectStgkDeviceReportById" parameterType="Long" resultMap="StgkDeviceReportResult">
+        <include refid="selectStgkDeviceReportVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStgkDeviceReport" parameterType="StgkDeviceReport" useGeneratedKeys="true" keyProperty="id">
+        insert into stgk_device_report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">device_id,</if>
+            <if test="typeId != null">type_id,</if>
+            <if test="temperature != null">temperature,</if>
+            <if test="earlyWarning != null">early_warning,</if>
+            <if test="reportWarning != null">report_warning,</if>
+            <if test="alarmWarning != null">alarm_warning,</if>
+            <if test="reportFieldName != null">report_field_name,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">#{deviceId},</if>
+            <if test="typeId != null">#{typeId},</if>
+            <if test="temperature != null">#{temperature},</if>
+            <if test="earlyWarning != null">#{earlyWarning},</if>
+            <if test="reportWarning != null">#{reportWarning},</if>
+            <if test="alarmWarning != null">#{alarmWarning},</if>
+            <if test="reportFieldName != null">#{reportFieldName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStgkDeviceReport" parameterType="StgkDeviceReport">
+        update stgk_device_report
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="deviceId != null">device_id = #{deviceId},</if>
+            <if test="typeId != null">type_id = #{typeId},</if>
+            <if test="temperature != null">temperature = #{temperature},</if>
+            <if test="earlyWarning != null">early_warning = #{earlyWarning},</if>
+            <if test="reportWarning != null">report_warning = #{reportWarning},</if>
+            <if test="alarmWarning != null">alarm_warning = #{alarmWarning},</if>
+            <if test="reportFieldName != null">report_field_name = #{reportFieldName},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStgkDeviceReportById" parameterType="Long">
+        delete from stgk_device_report where id = #{id}
+    </delete>
+
+    <delete id="deleteStgkDeviceReportByIds" parameterType="String">
+        delete from stgk_device_report where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

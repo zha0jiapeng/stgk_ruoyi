@@ -1,16 +1,13 @@
 package com.ruoyi.system.service;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
-
 import com.ruoyi.system.domain.StgkVoltageCabinetMonitor;
 
 /**
  * 高压柜监控Service接口
  * 
  * @author ruoyi
- * @date 2023-04-20
+ * @date 2023-04-25
  */
 public interface IStgkVoltageCabinetMonitorService 
 {
@@ -62,5 +59,5 @@ public interface IStgkVoltageCabinetMonitorService
      */
     public int deleteStgkVoltageCabinetMonitorById(Long id);
 
-    List<Map<String, BigDecimal>> getGraph(String column, Long cabinetId);
+    StgkVoltageCabinetMonitor selectStgkVoltageCabinetMonitorByCabinetId(Long id);
 }

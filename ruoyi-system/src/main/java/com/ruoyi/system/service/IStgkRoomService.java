@@ -1,13 +1,16 @@
 package com.ruoyi.system.service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+
 import com.ruoyi.system.domain.StgkRoom;
 
 /**
  * 配电室Service接口
  * 
  * @author ruoyi
- * @date 2023-04-19
+ * @date 2023-04-23
  */
 public interface IStgkRoomService 
 {
@@ -58,4 +61,6 @@ public interface IStgkRoomService
      * @return 结果
      */
     public int deleteStgkRoomById(Long id);
+
+    List<Map<String, BigDecimal>> getTimeTemperatureAndHumidity(Long id);
 }

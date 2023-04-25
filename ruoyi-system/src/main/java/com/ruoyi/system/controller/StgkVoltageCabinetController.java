@@ -2,8 +2,6 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-
-import com.ruoyi.common.utils.StringUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +23,9 @@ import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
  * 高压柜Controller
- *
+ * 
  * @author ruoyi
- * @date 2023-04-20
+ * @date 2023-04-25
  */
 @RestController
 @RequestMapping("/system/cabinet")
@@ -103,25 +101,4 @@ public class StgkVoltageCabinetController extends BaseController
     {
         return toAjax(stgkVoltageCabinetService.deleteStgkVoltageCabinetByIds(ids));
     }
-
-    /**
-     * 获取高压柜曲线图
-     */
-    @PreAuthorize("@ss.hasPermi('system:cabinet:query')")
-    @GetMapping(value = "/getGraph/{id}")
-    public AjaxResult getGraph(String column, @PathVariable("id") Long id)
-    {
-        return success(stgkVoltageCabinetService.getGraph(StringUtils.camelToUnderline(column),id));
-    }
-
-    /**
-     * 操作控制
-     */
-    @PreAuthorize("@ss.hasPermi('system:cabinet:edit')")
-    @PostMapping(value = "/operate/{id}")
-    public AjaxResult operate(String operate, @PathVariable("id") Long id)
-    {
-        return success();
-    }
-
 }

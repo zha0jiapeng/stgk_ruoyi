@@ -64,15 +64,28 @@ public class ModBusUtils {
         }
     }
 
-    public static void writeRegistersTest(ModbusMaster master, int slaveId, int start,
-                                          int value) {
+    public static void writeRegister(int slaveId, int start, int value) {
+        SerialPortWrapper serialParameters = new
+                SerialPortWrapperImpl("COM6", BAUD_RATE, 8, 1, 0, 0, 0);
+        /* 创建ModbusFactory工厂实例 */
+        ModbusFactory modbusFactory = new ModbusFactory();
+        /* 创建ModbusMaster实例 */
+        ModbusMaster master = modbusFactory.createRtuMaster(serialParameters);
+        master.setTimeout(10000);
+        try {
+            master.init();
+        } catch (ModbusInitException e) {
+            e.printStackTrace();
+        } finally {
+            master.destroy();
+        }
         try {
             WriteRegisterRequest request = new WriteRegisterRequest(slaveId, start, value);
             WriteRegisterResponse response = (WriteRegisterResponse) master.send(request);
             if (response.isException())
                 System.out.println("Exception response: message=" + response.getExceptionMessage());
             else
-                System.out.println("Success");
+                System.out.println(response.getFunctionCode());
         } catch (ModbusTransportException e) {
             e.printStackTrace();
         }

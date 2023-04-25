@@ -1,17 +1,13 @@
 package com.ruoyi.system.mapper;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
-
 import com.ruoyi.system.domain.StgkVoltageCabinetMonitor;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * 高压柜监控Mapper接口
  * 
  * @author ruoyi
- * @date 2023-04-20
+ * @date 2023-04-25
  */
 public interface StgkVoltageCabinetMonitorMapper 
 {
@@ -63,5 +59,5 @@ public interface StgkVoltageCabinetMonitorMapper
      */
     public int deleteStgkVoltageCabinetMonitorByIds(Long[] ids);
 
-    List<Map<String, BigDecimal>> getGraph(@Param("column")String column , @Param("cabinetId") Long cabinetId);
+    StgkVoltageCabinetMonitor selectStgkVoltageCabinetMonitorByCabinetId(Long cabinetId);
 }

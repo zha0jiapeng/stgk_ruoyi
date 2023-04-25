@@ -15,15 +15,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="cos"    column="cos"    />
         <result property="rh"    column="rh"    />
         <result property="pd"    column="pd"    />
-        <result property="breakerUpAcurrent"    column="breaker_up_acurrent"    />
-        <result property="breakerUpBcurrent"    column="breaker_up_bcurrent"    />
-        <result property="breakerUpCcurrent"    column="breaker_up_ccurrent"    />
-        <result property="breakerDownAcurrent"    column="breaker_down_acurrent"    />
-        <result property="breakerDownBcurrent"    column="breaker_down_bcurrent"    />
-        <result property="breakerDownCcurrent"    column="breaker_down_ccurrent"    />
-        <result property="breakerOutAcurrent"    column="breaker_out_acurrent"    />
-        <result property="breakerOutBcurrent"    column="breaker_out_bcurrent"    />
-        <result property="breakerOutCcurrent"    column="breaker_out_ccurrent"    />
+        <result property="breakerUpATemperature"    column="breaker_up_a_temperature"    />
+        <result property="breakerUpBTemperature"    column="breaker_up_b_temperature"    />
+        <result property="breakerUpCTemperature"    column="breaker_up_c_temperature"    />
+        <result property="breakerDownATemperature"    column="breaker_down_a_temperature"    />
+        <result property="breakerDownBTemperature"    column="breaker_down_b_temperature"    />
+        <result property="breakerDownCTemperature"    column="breaker_down_c_temperature"    />
+        <result property="breakerOutATemperature"    column="breaker_out_a_temperature"    />
+        <result property="breakerOutBTemperature"    column="breaker_out_b_temperature"    />
+        <result property="breakerOutCTemperature"    column="breaker_out_c_temperature"    />
         <result property="closingCoilCurrent"    column="closing_coil_current"    />
         <result property="openingCoilCurrent"    column="opening_coil_current"    />
         <result property="storageMotorCurrent"    column="storage_motor_current"    />
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectStgkVoltageCabinetMonitorVo">
-        select id, cabinet_id, a_current, b_current, c_current, uab_voltage, p_power, cos, rh, pd, breaker_up_acurrent, breaker_up_bcurrent, breaker_up_ccurrent, breaker_down_acurrent, breaker_down_bcurrent, breaker_down_ccurrent, breaker_out_acurrent, breaker_out_bcurrent, breaker_out_ccurrent, closing_coil_current, opening_coil_current, storage_motor_current, displacement, trip, monitor_time from stgk_voltage_cabinet_monitor
+        select id, cabinet_id, a_current, b_current, c_current, uab_voltage, p_power, cos, rh, pd, breaker_up_a_temperature, breaker_up_b_temperature, breaker_up_c_temperature, breaker_down_a_temperature, breaker_down_b_temperature, breaker_down_c_temperature, breaker_out_a_temperature, breaker_out_b_temperature, breaker_out_c_temperature, closing_coil_current, opening_coil_current, storage_motor_current, displacement, trip, monitor_time from stgk_voltage_cabinet_monitor
     </sql>
 
     <select id="selectStgkVoltageCabinetMonitorList" parameterType="StgkVoltageCabinetMonitor" resultMap="StgkVoltageCabinetMonitorResult">
@@ -48,15 +48,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="cos != null "> and cos = #{cos}</if>
             <if test="rh != null "> and rh = #{rh}</if>
             <if test="pd != null "> and pd = #{pd}</if>
-            <if test="breakerUpAcurrent != null "> and breaker_up_acurrent = #{breakerUpAcurrent}</if>
-            <if test="breakerUpBcurrent != null "> and breaker_up_bcurrent = #{breakerUpBcurrent}</if>
-            <if test="breakerUpCcurrent != null "> and breaker_up_ccurrent = #{breakerUpCcurrent}</if>
-            <if test="breakerDownAcurrent != null "> and breaker_down_acurrent = #{breakerDownAcurrent}</if>
-            <if test="breakerDownBcurrent != null "> and breaker_down_bcurrent = #{breakerDownBcurrent}</if>
-            <if test="breakerDownCcurrent != null "> and breaker_down_ccurrent = #{breakerDownCcurrent}</if>
-            <if test="breakerOutAcurrent != null "> and breaker_out_acurrent = #{breakerOutAcurrent}</if>
-            <if test="breakerOutBcurrent != null "> and breaker_out_bcurrent = #{breakerOutBcurrent}</if>
-            <if test="breakerOutCcurrent != null "> and breaker_out_ccurrent = #{breakerOutCcurrent}</if>
+            <if test="breakerUpATemperature != null "> and breaker_up_a_temperature = #{breakerUpATemperature}</if>
+            <if test="breakerUpBTemperature != null "> and breaker_up_b_temperature = #{breakerUpBTemperature}</if>
+            <if test="breakerUpCTemperature != null "> and breaker_up_c_temperature = #{breakerUpCTemperature}</if>
+            <if test="breakerDownATemperature != null "> and breaker_down_a_temperature = #{breakerDownATemperature}</if>
+            <if test="breakerDownBTemperature != null "> and breaker_down_b_temperature = #{breakerDownBTemperature}</if>
+            <if test="breakerDownCTemperature != null "> and breaker_down_c_temperature = #{breakerDownCTemperature}</if>
+            <if test="breakerOutATemperature != null "> and breaker_out_a_temperature = #{breakerOutATemperature}</if>
+            <if test="breakerOutBTemperature != null "> and breaker_out_b_temperature = #{breakerOutBTemperature}</if>
+            <if test="breakerOutCTemperature != null "> and breaker_out_c_temperature = #{breakerOutCTemperature}</if>
             <if test="closingCoilCurrent != null "> and closing_coil_current = #{closingCoilCurrent}</if>
             <if test="openingCoilCurrent != null "> and opening_coil_current = #{openingCoilCurrent}</if>
             <if test="storageMotorCurrent != null "> and storage_motor_current = #{storageMotorCurrent}</if>
@@ -83,15 +83,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="cos != null">cos,</if>
             <if test="rh != null">rh,</if>
             <if test="pd != null">pd,</if>
-            <if test="breakerUpAcurrent != null">breaker_up_acurrent,</if>
-            <if test="breakerUpBcurrent != null">breaker_up_bcurrent,</if>
-            <if test="breakerUpCcurrent != null">breaker_up_ccurrent,</if>
-            <if test="breakerDownAcurrent != null">breaker_down_acurrent,</if>
-            <if test="breakerDownBcurrent != null">breaker_down_bcurrent,</if>
-            <if test="breakerDownCcurrent != null">breaker_down_ccurrent,</if>
-            <if test="breakerOutAcurrent != null">breaker_out_acurrent,</if>
-            <if test="breakerOutBcurrent != null">breaker_out_bcurrent,</if>
-            <if test="breakerOutCcurrent != null">breaker_out_ccurrent,</if>
+            <if test="breakerUpATemperature != null">breaker_up_a_temperature,</if>
+            <if test="breakerUpBTemperature != null">breaker_up_b_temperature,</if>
+            <if test="breakerUpCTemperature != null">breaker_up_c_temperature,</if>
+            <if test="breakerDownATemperature != null">breaker_down_a_temperature,</if>
+            <if test="breakerDownBTemperature != null">breaker_down_b_temperature,</if>
+            <if test="breakerDownCTemperature != null">breaker_down_c_temperature,</if>
+            <if test="breakerOutATemperature != null">breaker_out_a_temperature,</if>
+            <if test="breakerOutBTemperature != null">breaker_out_b_temperature,</if>
+            <if test="breakerOutCTemperature != null">breaker_out_c_temperature,</if>
             <if test="closingCoilCurrent != null">closing_coil_current,</if>
             <if test="openingCoilCurrent != null">opening_coil_current,</if>
             <if test="storageMotorCurrent != null">storage_motor_current,</if>
@@ -109,15 +109,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="cos != null">#{cos},</if>
             <if test="rh != null">#{rh},</if>
             <if test="pd != null">#{pd},</if>
-            <if test="breakerUpAcurrent != null">#{breakerUpAcurrent},</if>
-            <if test="breakerUpBcurrent != null">#{breakerUpBcurrent},</if>
-            <if test="breakerUpCcurrent != null">#{breakerUpCcurrent},</if>
-            <if test="breakerDownAcurrent != null">#{breakerDownAcurrent},</if>
-            <if test="breakerDownBcurrent != null">#{breakerDownBcurrent},</if>
-            <if test="breakerDownCcurrent != null">#{breakerDownCcurrent},</if>
-            <if test="breakerOutAcurrent != null">#{breakerOutAcurrent},</if>
-            <if test="breakerOutBcurrent != null">#{breakerOutBcurrent},</if>
-            <if test="breakerOutCcurrent != null">#{breakerOutCcurrent},</if>
+            <if test="breakerUpATemperature != null">#{breakerUpATemperature},</if>
+            <if test="breakerUpBTemperature != null">#{breakerUpBTemperature},</if>
+            <if test="breakerUpCTemperature != null">#{breakerUpCTemperature},</if>
+            <if test="breakerDownATemperature != null">#{breakerDownATemperature},</if>
+            <if test="breakerDownBTemperature != null">#{breakerDownBTemperature},</if>
+            <if test="breakerDownCTemperature != null">#{breakerDownCTemperature},</if>
+            <if test="breakerOutATemperature != null">#{breakerOutATemperature},</if>
+            <if test="breakerOutBTemperature != null">#{breakerOutBTemperature},</if>
+            <if test="breakerOutCTemperature != null">#{breakerOutCTemperature},</if>
             <if test="closingCoilCurrent != null">#{closingCoilCurrent},</if>
             <if test="openingCoilCurrent != null">#{openingCoilCurrent},</if>
             <if test="storageMotorCurrent != null">#{storageMotorCurrent},</if>
@@ -139,15 +139,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="cos != null">cos = #{cos},</if>
             <if test="rh != null">rh = #{rh},</if>
             <if test="pd != null">pd = #{pd},</if>
-            <if test="breakerUpAcurrent != null">breaker_up_acurrent = #{breakerUpAcurrent},</if>
-            <if test="breakerUpBcurrent != null">breaker_up_bcurrent = #{breakerUpBcurrent},</if>
-            <if test="breakerUpCcurrent != null">breaker_up_ccurrent = #{breakerUpCcurrent},</if>
-            <if test="breakerDownAcurrent != null">breaker_down_acurrent = #{breakerDownAcurrent},</if>
-            <if test="breakerDownBcurrent != null">breaker_down_bcurrent = #{breakerDownBcurrent},</if>
-            <if test="breakerDownCcurrent != null">breaker_down_ccurrent = #{breakerDownCcurrent},</if>
-            <if test="breakerOutAcurrent != null">breaker_out_acurrent = #{breakerOutAcurrent},</if>
-            <if test="breakerOutBcurrent != null">breaker_out_bcurrent = #{breakerOutBcurrent},</if>
-            <if test="breakerOutCcurrent != null">breaker_out_ccurrent = #{breakerOutCcurrent},</if>
+            <if test="breakerUpATemperature != null">breaker_up_a_temperature = #{breakerUpATemperature},</if>
+            <if test="breakerUpBTemperature != null">breaker_up_b_temperature = #{breakerUpBTemperature},</if>
+            <if test="breakerUpCTemperature != null">breaker_up_c_temperature = #{breakerUpCTemperature},</if>
+            <if test="breakerDownATemperature != null">breaker_down_a_temperature = #{breakerDownATemperature},</if>
+            <if test="breakerDownBTemperature != null">breaker_down_b_temperature = #{breakerDownBTemperature},</if>
+            <if test="breakerDownCTemperature != null">breaker_down_c_temperature = #{breakerDownCTemperature},</if>
+            <if test="breakerOutATemperature != null">breaker_out_a_temperature = #{breakerOutATemperature},</if>
+            <if test="breakerOutBTemperature != null">breaker_out_b_temperature = #{breakerOutBTemperature},</if>
+            <if test="breakerOutCTemperature != null">breaker_out_c_temperature = #{breakerOutCTemperature},</if>
             <if test="closingCoilCurrent != null">closing_coil_current = #{closingCoilCurrent},</if>
             <if test="openingCoilCurrent != null">opening_coil_current = #{openingCoilCurrent},</if>
             <if test="storageMotorCurrent != null">storage_motor_current = #{storageMotorCurrent},</if>
@@ -169,15 +169,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
-    <select id="getGraph" parameterType="Long" resultType="map">
-        SELECT
-        DATE_FORMAT(monitor_time, '%Y-%m-%d %H:00:00') AS monitor_hour,
-        avg(#{column})
-        FROM
-        stgk_voltage_cabinet_monitor
-        where
-        cabinet_id = #{cabinetId}
-        group by
-        monitor_hour
+    <select id="selectStgkVoltageCabinetMonitorByCabinetId" parameterType="Long" resultMap="StgkVoltageCabinetMonitorResult">
+        <include refid="selectStgkVoltageCabinetMonitorVo"/>
+        where cabinet_id = #{cabinetId}
+        order by monitor_time desc
+        limit 1
     </select>
 </mapper>

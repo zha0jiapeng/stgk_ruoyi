@@ -11,6 +11,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
+import ch.qos.logback.core.util.FileUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.Template;
@@ -266,7 +268,11 @@ public class GenTableServiceImpl implements IGenTableService
                 try
                 {
                     String path = getGenPath(table, template);
-                    FileUtils.writeStringToFile(new File(path), sw.toString(), CharsetKit.UTF_8);
+                    File file = new File(path);
+                    if(file.exists()) {
+                        FileUtils.delete(file);
+                    }
+                    FileUtils.writeStringToFile(file, sw.toString(), CharsetKit.UTF_8);
                 }
                 catch (IOException e)
                 {

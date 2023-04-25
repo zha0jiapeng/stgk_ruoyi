@@ -1,7 +1,15 @@
 package com.ruoyi.system.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+
 import com.ruoyi.common.utils.DateUtils;
+import com.ruoyi.system.domain.StgkDeviceSet;
+import com.ruoyi.system.domain.StgkRoomMonitor;
+import com.ruoyi.system.service.IStgkDeviceSetService;
+import com.ruoyi.system.service.IStgkRoomMonitorService;
+import com.ruoyi.system.websocket.rtsp.MediaTransfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.StgkRoomMapper;
@@ -12,13 +20,17 @@ import com.ruoyi.system.service.IStgkRoomService;
  * 配电室Service业务层处理
  * 
  * @author ruoyi
- * @date 2023-04-19
+ * @date 2023-04-23
  */
 @Service
 public class StgkRoomServiceImpl implements IStgkRoomService 
 {
     @Autowired
     private StgkRoomMapper stgkRoomMapper;
+
+
+    @Autowired
+    private IStgkRoomMonitorService stgkRoomMonitorService;
 
     /**
      * 查询配电室
@@ -29,7 +41,13 @@ public class StgkRoomServiceImpl implements IStgkRoomService
     @Override
     public StgkRoom selectStgkRoomById(Long id)
     {
-        return stgkRoomMapper.selectStgkRoomById(id);
+        StgkRoom stgkRoom = stgkRoomMapper.selectStgkRoomById(id);
+        StgkRoomMonitor roomMonitor = stgkRoomMonitorService.selectStgkRoomMonitorByRoomIdLast1(id);
+        if(roomMonitor!=null) {
+            stgkRoom.setTemperature(roomMonitor.getTemperature());
+            stgkRoom.setHumidity(roomMonitor.getHumidity());
+        }
+        return stgkRoom;
     }
 
     /**
@@ -92,5 +110,10 @@ public class StgkRoomServiceImpl implements IStgkRoomService
     public int deleteStgkRoomById(Long id)
     {
         return stgkRoomMapper.deleteStgkRoomById(id);
+    }
+
+    @Override
+    public List<Map<String, BigDecimal>> getTimeTemperatureAndHumidity(Long id) {
+        return stgkRoomMonitorService.getTimeTemperatureAndHumidity(id);
     }
 }

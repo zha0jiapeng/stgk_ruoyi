@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StgkRoomMonitorMapper">
+    
+    <resultMap type="StgkRoomMonitor" id="StgkRoomMonitorResult">
+        <result property="id"    column="id"    />
+        <result property="roomId"    column="room_id"    />
+        <result property="temperature"    column="temperature"    />
+        <result property="humidity"    column="humidity"    />
+        <result property="monitorTime"    column="monitor_time"    />
+    </resultMap>
+
+    <sql id="selectStgkRoomMonitorVo">
+        select id, room_id, temperature, humidity, monitor_time from stgk_room_monitor
+    </sql>
+
+    <select id="selectStgkRoomMonitorList" parameterType="StgkRoomMonitor" resultMap="StgkRoomMonitorResult">
+        <include refid="selectStgkRoomMonitorVo"/>
+        <where>  
+            <if test="roomId != null "> and room_id = #{roomId}</if>
+            <if test="temperature != null "> and temperature = #{temperature}</if>
+            <if test="humidity != null "> and humidity = #{humidity}</if>
+            <if test="monitorTime != null "> and monitor_time = #{monitorTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectStgkRoomMonitorById" parameterType="Long" resultMap="StgkRoomMonitorResult">
+        <include refid="selectStgkRoomMonitorVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStgkRoomMonitor" parameterType="StgkRoomMonitor" useGeneratedKeys="true" keyProperty="id">
+        insert into stgk_room_monitor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roomId != null">room_id,</if>
+            <if test="temperature != null">temperature,</if>
+            <if test="humidity != null">humidity,</if>
+            <if test="monitorTime != null">monitor_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roomId != null">#{roomId},</if>
+            <if test="temperature != null">#{temperature},</if>
+            <if test="humidity != null">#{humidity},</if>
+            <if test="monitorTime != null">#{monitorTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStgkRoomMonitor" parameterType="StgkRoomMonitor">
+        update stgk_room_monitor
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="roomId != null">room_id = #{roomId},</if>
+            <if test="temperature != null">temperature = #{temperature},</if>
+            <if test="humidity != null">humidity = #{humidity},</if>
+            <if test="monitorTime != null">monitor_time = #{monitorTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStgkRoomMonitorById" parameterType="Long">
+        delete from stgk_room_monitor where id = #{id}
+    </delete>
+
+    <delete id="deleteStgkRoomMonitorByIds" parameterType="String">
+        delete from stgk_room_monitor where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <select id="getTimeTemperatureAndHumidity" resultType="map">
+        SELECT
+        DATE_FORMAT(monitor_time, '%Y-%m-%d %H:00:00') AS monitor_hour,
+        max(temperature) temperature,
+        max(humidity) humidity
+        FROM
+        stgk_room_monitor
+        where
+        room_id = #{roomId}
+        AND monitor_time > DATE_SUB( now(), INTERVAL 15 DAY )
+        group by
+        monitor_hour
+    </select>
+
+    <select id="selectStgkRoomMonitorByRoomIdLast1" parameterType="Long" resultMap="StgkRoomMonitorResult">
+        <include refid="selectStgkRoomMonitorVo"/>
+        where room_id = #{roomId}
+        order by monitor_time desc
+        limit 1
+    </select>
+</mapper>

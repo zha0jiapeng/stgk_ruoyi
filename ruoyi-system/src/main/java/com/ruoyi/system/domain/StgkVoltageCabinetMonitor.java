@@ -12,7 +12,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 高压柜监控对象 stgk_voltage_cabinet_monitor
  * 
  * @author ruoyi
- * @date 2023-04-20
+ * @date 2023-04-25
  */
 public class StgkVoltageCabinetMonitor extends BaseEntity
 {
@@ -59,39 +59,39 @@ public class StgkVoltageCabinetMonitor extends BaseEntity
 
     /** 断路器上口A相温度 */
     @Excel(name = "断路器上口A相温度")
-    private BigDecimal breakerUpAcurrent;
+    private BigDecimal breakerUpATemperature;
 
     /** 断路器上口B相温度 */
     @Excel(name = "断路器上口B相温度")
-    private BigDecimal breakerUpBcurrent;
+    private BigDecimal breakerUpBTemperature;
 
     /** 断路器上口C相温度 */
     @Excel(name = "断路器上口C相温度")
-    private BigDecimal breakerUpCcurrent;
+    private BigDecimal breakerUpCTemperature;
 
     /** 断路器下口A相温度 */
     @Excel(name = "断路器下口A相温度")
-    private BigDecimal breakerDownAcurrent;
+    private BigDecimal breakerDownATemperature;
 
     /** 断路器下口B相温度 */
     @Excel(name = "断路器下口B相温度")
-    private BigDecimal breakerDownBcurrent;
+    private BigDecimal breakerDownBTemperature;
 
     /** 断路器下口C相温度 */
     @Excel(name = "断路器下口C相温度")
-    private BigDecimal breakerDownCcurrent;
+    private BigDecimal breakerDownCTemperature;
 
     /** 断路器出口A相温度 */
     @Excel(name = "断路器出口A相温度")
-    private BigDecimal breakerOutAcurrent;
+    private BigDecimal breakerOutATemperature;
 
     /** 断路器出口B相温度 */
     @Excel(name = "断路器出口B相温度")
-    private BigDecimal breakerOutBcurrent;
+    private BigDecimal breakerOutBTemperature;
 
     /** 断路器出口C相温度 */
     @Excel(name = "断路器出口C相温度")
-    private BigDecimal breakerOutCcurrent;
+    private BigDecimal breakerOutCTemperature;
 
     /** 合闸线圈电流 */
     @Excel(name = "合闸线圈电流")
@@ -208,86 +208,86 @@ public class StgkVoltageCabinetMonitor extends BaseEntity
     {
         return pd;
     }
-    public void setBreakerUpAcurrent(BigDecimal breakerUpAcurrent) 
+    public void setBreakerUpATemperature(BigDecimal breakerUpATemperature) 
     {
-        this.breakerUpAcurrent = breakerUpAcurrent;
+        this.breakerUpATemperature = breakerUpATemperature;
     }
 
-    public BigDecimal getBreakerUpAcurrent() 
+    public BigDecimal getBreakerUpATemperature() 
     {
-        return breakerUpAcurrent;
+        return breakerUpATemperature;
     }
-    public void setBreakerUpBcurrent(BigDecimal breakerUpBcurrent) 
+    public void setBreakerUpBTemperature(BigDecimal breakerUpBTemperature) 
     {
-        this.breakerUpBcurrent = breakerUpBcurrent;
-    }
-
-    public BigDecimal getBreakerUpBcurrent() 
-    {
-        return breakerUpBcurrent;
-    }
-    public void setBreakerUpCcurrent(BigDecimal breakerUpCcurrent) 
-    {
-        this.breakerUpCcurrent = breakerUpCcurrent;
+        this.breakerUpBTemperature = breakerUpBTemperature;
     }
 
-    public BigDecimal getBreakerUpCcurrent() 
+    public BigDecimal getBreakerUpBTemperature() 
     {
-        return breakerUpCcurrent;
+        return breakerUpBTemperature;
     }
-    public void setBreakerDownAcurrent(BigDecimal breakerDownAcurrent) 
+    public void setBreakerUpCTemperature(BigDecimal breakerUpCTemperature) 
     {
-        this.breakerDownAcurrent = breakerDownAcurrent;
-    }
-
-    public BigDecimal getBreakerDownAcurrent() 
-    {
-        return breakerDownAcurrent;
-    }
-    public void setBreakerDownBcurrent(BigDecimal breakerDownBcurrent) 
-    {
-        this.breakerDownBcurrent = breakerDownBcurrent;
+        this.breakerUpCTemperature = breakerUpCTemperature;
     }
 
-    public BigDecimal getBreakerDownBcurrent() 
+    public BigDecimal getBreakerUpCTemperature() 
     {
-        return breakerDownBcurrent;
+        return breakerUpCTemperature;
     }
-    public void setBreakerDownCcurrent(BigDecimal breakerDownCcurrent) 
+    public void setBreakerDownATemperature(BigDecimal breakerDownATemperature) 
     {
-        this.breakerDownCcurrent = breakerDownCcurrent;
-    }
-
-    public BigDecimal getBreakerDownCcurrent() 
-    {
-        return breakerDownCcurrent;
-    }
-    public void setBreakerOutAcurrent(BigDecimal breakerOutAcurrent) 
-    {
-        this.breakerOutAcurrent = breakerOutAcurrent;
+        this.breakerDownATemperature = breakerDownATemperature;
     }
 
-    public BigDecimal getBreakerOutAcurrent() 
+    public BigDecimal getBreakerDownATemperature() 
     {
-        return breakerOutAcurrent;
+        return breakerDownATemperature;
     }
-    public void setBreakerOutBcurrent(BigDecimal breakerOutBcurrent) 
+    public void setBreakerDownBTemperature(BigDecimal breakerDownBTemperature) 
     {
-        this.breakerOutBcurrent = breakerOutBcurrent;
-    }
-
-    public BigDecimal getBreakerOutBcurrent() 
-    {
-        return breakerOutBcurrent;
-    }
-    public void setBreakerOutCcurrent(BigDecimal breakerOutCcurrent) 
-    {
-        this.breakerOutCcurrent = breakerOutCcurrent;
+        this.breakerDownBTemperature = breakerDownBTemperature;
     }
 
-    public BigDecimal getBreakerOutCcurrent() 
+    public BigDecimal getBreakerDownBTemperature() 
     {
-        return breakerOutCcurrent;
+        return breakerDownBTemperature;
+    }
+    public void setBreakerDownCTemperature(BigDecimal breakerDownCTemperature) 
+    {
+        this.breakerDownCTemperature = breakerDownCTemperature;
+    }
+
+    public BigDecimal getBreakerDownCTemperature() 
+    {
+        return breakerDownCTemperature;
+    }
+    public void setBreakerOutATemperature(BigDecimal breakerOutATemperature) 
+    {
+        this.breakerOutATemperature = breakerOutATemperature;
+    }
+
+    public BigDecimal getBreakerOutATemperature() 
+    {
+        return breakerOutATemperature;
+    }
+    public void setBreakerOutBTemperature(BigDecimal breakerOutBTemperature) 
+    {
+        this.breakerOutBTemperature = breakerOutBTemperature;
+    }
+
+    public BigDecimal getBreakerOutBTemperature() 
+    {
+        return breakerOutBTemperature;
+    }
+    public void setBreakerOutCTemperature(BigDecimal breakerOutCTemperature) 
+    {
+        this.breakerOutCTemperature = breakerOutCTemperature;
+    }
+
+    public BigDecimal getBreakerOutCTemperature() 
+    {
+        return breakerOutCTemperature;
     }
     public void setClosingCoilCurrent(BigDecimal closingCoilCurrent) 
     {
@@ -357,15 +357,15 @@ public class StgkVoltageCabinetMonitor extends BaseEntity
             .append("cos", getCos())
             .append("rh", getRh())
             .append("pd", getPd())
-            .append("breakerUpAcurrent", getBreakerUpAcurrent())
-            .append("breakerUpBcurrent", getBreakerUpBcurrent())
-            .append("breakerUpCcurrent", getBreakerUpCcurrent())
-            .append("breakerDownAcurrent", getBreakerDownAcurrent())
-            .append("breakerDownBcurrent", getBreakerDownBcurrent())
-            .append("breakerDownCcurrent", getBreakerDownCcurrent())
-            .append("breakerOutAcurrent", getBreakerOutAcurrent())
-            .append("breakerOutBcurrent", getBreakerOutBcurrent())
-            .append("breakerOutCcurrent", getBreakerOutCcurrent())
+            .append("breakerUpATemperature", getBreakerUpATemperature())
+            .append("breakerUpBTemperature", getBreakerUpBTemperature())
+            .append("breakerUpCTemperature", getBreakerUpCTemperature())
+            .append("breakerDownATemperature", getBreakerDownATemperature())
+            .append("breakerDownBTemperature", getBreakerDownBTemperature())
+            .append("breakerDownCTemperature", getBreakerDownCTemperature())
+            .append("breakerOutATemperature", getBreakerOutATemperature())
+            .append("breakerOutBTemperature", getBreakerOutBTemperature())
+            .append("breakerOutCTemperature", getBreakerOutCTemperature())
             .append("closingCoilCurrent", getClosingCoilCurrent())
             .append("openingCoilCurrent", getOpeningCoilCurrent())
             .append("storageMotorCurrent", getStorageMotorCurrent())

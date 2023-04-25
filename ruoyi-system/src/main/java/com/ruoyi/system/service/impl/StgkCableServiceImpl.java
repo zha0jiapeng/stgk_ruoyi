@@ -36,9 +36,11 @@ public class StgkCableServiceImpl implements IStgkCableService
     public StgkCable selectStgkCableById(Long id)
     {
         StgkCable stgkCable = stgkCableMapper.selectStgkCableById(id);
-        stgkCable.setMaintenanceDay(321);
-        stgkCable.setMaintenanceTotalDay(654);
-        stgkCable.setMaintenanceStatus(1);
+        if(stgkCable!=null) {
+            stgkCable.setMaintenanceDay(321);
+            stgkCable.setMaintenanceTotalDay(654);
+            stgkCable.setMaintenanceStatus(1);
+        }
         return stgkCable;
     }
 
