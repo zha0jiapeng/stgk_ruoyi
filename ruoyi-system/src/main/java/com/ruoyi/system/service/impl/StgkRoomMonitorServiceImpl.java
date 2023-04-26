@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.StgkRoomMonitorMapper;
@@ -17,7 +18,7 @@ import com.ruoyi.system.service.IStgkRoomMonitorService;
  * @date 2023-04-25
  */
 @Service
-public class StgkRoomMonitorServiceImpl implements IStgkRoomMonitorService 
+public class StgkRoomMonitorServiceImpl extends ServiceImpl<StgkRoomMonitorMapper,StgkRoomMonitor> implements IStgkRoomMonitorService
 {
     @Autowired
     private StgkRoomMonitorMapper stgkRoomMonitorMapper;

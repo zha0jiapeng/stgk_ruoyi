@@ -1,6 +1,8 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruoyi.system.domain.StgkRoom;
 
 /**
@@ -9,7 +11,7 @@ import com.ruoyi.system.domain.StgkRoom;
  * @author ruoyi
  * @date 2023-04-23
  */
-public interface StgkRoomMapper 
+public interface StgkRoomMapper  extends BaseMapper<StgkRoom>
 {
     /**
      * 查询配电室
@@ -58,4 +60,6 @@ public interface StgkRoomMapper
      * @return 结果
      */
     public int deleteStgkRoomByIds(Long[] ids);
+
+    StgkRoom selectStgkRoomByName(String roomName);
 }

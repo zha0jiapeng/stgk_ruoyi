@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruoyi.system.domain.StgkRoomMonitor;
 
 /**
@@ -12,7 +13,7 @@ import com.ruoyi.system.domain.StgkRoomMonitor;
  * @author ruoyi
  * @date 2023-04-25
  */
-public interface StgkRoomMonitorMapper 
+public interface StgkRoomMonitorMapper extends BaseMapper<StgkRoomMonitor>
 {
     /**
      * 查询配电室监控表

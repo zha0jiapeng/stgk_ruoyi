@@ -1,6 +1,9 @@
 package com.ruoyi.system.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+
 import com.ruoyi.system.domain.StgkVoltageCabinet;
 
 /**
@@ -58,4 +61,7 @@ public interface StgkVoltageCabinetMapper
      * @return 结果
      */
     public int deleteStgkVoltageCabinetByIds(Long[] ids);
+
+    StgkVoltageCabinet selectStgkVoltageCabinetByName(String cabinetName);
+
 }

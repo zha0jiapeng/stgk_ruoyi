@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoyi.system.domain.StgkRoom;
 
 /**
@@ -12,7 +13,7 @@ import com.ruoyi.system.domain.StgkRoom;
  * @author ruoyi
  * @date 2023-04-23
  */
-public interface IStgkRoomService 
+public interface IStgkRoomService
 {
     /**
      * 查询配电室
@@ -63,4 +64,6 @@ public interface IStgkRoomService
     public int deleteStgkRoomById(Long id);
 
     List<Map<String, BigDecimal>> getTimeTemperatureAndHumidity(Long id);
+
+    StgkRoom selectStgkRoomByName(String roomName);
 }

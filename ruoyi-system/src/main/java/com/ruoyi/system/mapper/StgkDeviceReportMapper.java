@@ -1,6 +1,9 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.system.domain.StgkDeviceReport;
 
 /**
@@ -9,7 +12,7 @@ import com.ruoyi.system.domain.StgkDeviceReport;
  * @author ruoyi
  * @date 2023-04-25
  */
-public interface StgkDeviceReportMapper 
+public interface StgkDeviceReportMapper extends BaseMapper<StgkDeviceReport>
 {
     /**
      * 查询设备预警表

@@ -93,4 +93,9 @@ public class StgkDeviceSetServiceImpl implements IStgkDeviceSetService
     {
         return stgkDeviceSetMapper.deleteStgkDeviceSetById(id);
     }
+
+    @Override
+    public StgkDeviceSet selectStgkDeviceSetByTypeIdAndDeviceId(Integer typeId, Integer deviceId) {
+        return stgkDeviceSetMapper.selectStgkDeviceSetByTypeIdAndDeviceId(typeId,deviceId);
+    }
 }

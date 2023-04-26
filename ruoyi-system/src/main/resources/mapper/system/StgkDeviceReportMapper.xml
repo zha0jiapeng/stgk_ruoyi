@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap type="StgkDeviceReport" id="StgkDeviceReportResult">
         <result property="id"    column="id"    />
         <result property="deviceId"    column="device_id"    />
+        <result property="deviceName"    column="device_name"    />
         <result property="typeId"    column="type_id"    />
         <result property="temperature"    column="temperature"    />
         <result property="earlyWarning"    column="early_warning"    />
@@ -20,13 +21,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectStgkDeviceReportVo">
-        select id, device_id, type_id, temperature, early_warning, report_warning, alarm_warning, report_field_name, create_time, create_by, update_time, update_by from stgk_device_report
+        select id, device_id, device_name, type_id, temperature, early_warning, report_warning, alarm_warning, report_field_name, create_time, create_by, update_time, update_by from stgk_device_report
     </sql>
 
     <select id="selectStgkDeviceReportList" parameterType="StgkDeviceReport" resultMap="StgkDeviceReportResult">
         <include refid="selectStgkDeviceReportVo"/>
         <where>  
             <if test="deviceId != null "> and device_id = #{deviceId}</if>
+            <if test="deviceName != null "> and device_name like %#{deviceName}%</if>
             <if test="typeId != null "> and type_id = #{typeId}</if>
             <if test="temperature != null "> and temperature = #{temperature}</if>
             <if test="earlyWarning != null "> and early_warning = #{earlyWarning}</if>
@@ -45,6 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into stgk_device_report
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="deviceId != null">device_id,</if>
+            <if test="deviceName != null">device_name,</if>
             <if test="typeId != null">type_id,</if>
             <if test="temperature != null">temperature,</if>
             <if test="earlyWarning != null">early_warning,</if>
@@ -58,6 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="deviceId != null">#{deviceId},</if>
+            <if test="deviceName != null">#{deviceName},</if>
             <if test="typeId != null">#{typeId},</if>
             <if test="temperature != null">#{temperature},</if>
             <if test="earlyWarning != null">#{earlyWarning},</if>
@@ -75,6 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update stgk_device_report
         <trim prefix="SET" suffixOverrides=",">
             <if test="deviceId != null">device_id = #{deviceId},</if>
+            <if test="deviceName != null">device_name = #{deviceName},</if>
             <if test="typeId != null">type_id = #{typeId},</if>
             <if test="temperature != null">temperature = #{temperature},</if>
             <if test="earlyWarning != null">early_warning = #{earlyWarning},</if>

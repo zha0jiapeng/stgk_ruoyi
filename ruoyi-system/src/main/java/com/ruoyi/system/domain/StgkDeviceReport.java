@@ -17,15 +17,18 @@ public class StgkDeviceReport extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 自增id */
-    private Long id;
+    private Integer id;
 
     /** 设备主键 */
     @Excel(name = "设备主键")
-    private Long deviceId;
+    private Integer deviceId;
+
+    @Excel(name = "设备名称")
+    private String deviceName;
 
     /** 设备类型 */
     @Excel(name = "设备类型")
-    private Long typeId;
+    private Integer typeId;
 
     /** 温度 */
     @Excel(name = "温度")
@@ -47,30 +50,39 @@ public class StgkDeviceReport extends BaseEntity
     @Excel(name = "报警字段名")
     private String reportFieldName;
 
-    public void setId(Long id) 
+    public void setId(Integer id)
     {
         this.id = id;
     }
 
-    public Long getId() 
+    public Integer getId()
     {
         return id;
     }
-    public void setDeviceId(Long deviceId) 
+    public void setDeviceId(Integer deviceId)
     {
         this.deviceId = deviceId;
     }
 
-    public Long getDeviceId() 
+    public Integer getDeviceId()
     {
         return deviceId;
     }
-    public void setTypeId(Long typeId) 
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
+
+    public void setTypeId(Integer typeId)
     {
         this.typeId = typeId;
     }
 
-    public Long getTypeId() 
+    public Integer getTypeId()
     {
         return typeId;
     }

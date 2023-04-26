@@ -58,4 +58,6 @@ public interface IStgkDeviceSetService
      * @return 结果
      */
     public int deleteStgkDeviceSetById(Long id);
+
+    StgkDeviceSet selectStgkDeviceSetByTypeIdAndDeviceId(Integer typeId, Integer id);
 }

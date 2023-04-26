@@ -7,23 +7,23 @@ package com.ruoyi.common.enums;
  */
 public enum DeviceTypeEnum
 {
-    HIGH_VOLTAGE_CABINET(1L,"高压柜"),
-    TRANSFORMER(2L,"变压器"),
-    CABLE(3L,"电缆");
+    HIGH_VOLTAGE_CABINET(1,"高压柜"),
+    TRANSFORMER(2,"变压器"),
+    CABLE(3,"电缆");
 
-    DeviceTypeEnum(Long code,String name){
+    DeviceTypeEnum(Integer code,String name){
         this.code = code;
         this.name = name;
     }
 
-    private Long code;
+    private Integer code;
     private String name;
 
-    public Long getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(Long code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

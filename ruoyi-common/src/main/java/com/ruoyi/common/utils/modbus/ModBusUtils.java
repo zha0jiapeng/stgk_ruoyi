@@ -45,23 +45,22 @@ public class ModBusUtils {
      * @param start 起始地址的偏移量
      * @param len 待读寄存器的个数
      */
-    private static void readHoldingRegistersTest(ModbusMaster master, int slaveId, int start, int len) {
+    public static short[] readHoldingRegisters(ModbusMaster master, int slaveId, int start, int len) {
         try {
             ReadHoldingRegistersRequest request = new ReadHoldingRegistersRequest(slaveId, start, len);
             ReadHoldingRegistersResponse response = (ReadHoldingRegistersResponse)master.send(request);
             if (response.isException()) {
                 System.out.println("Exception response: message=" + response.getExceptionMessage());
-                readHoldingRegistersTest(master,slaveId,start,len);
+                readHoldingRegisters(master,slaveId,start,len);
             } else {
                 System.out.println(Arrays.toString(response.getShortData()));
                 short[] list = response.getShortData();
-                for (int i = 0; i < list.length; i++) {
-                    System.out.print(list[i] + " ");
-                }
+                return list;
             }
         } catch (ModbusTransportException e) {
             e.printStackTrace();
         }
+        return new short[0];
     }
 
     public static void writeRegister(int slaveId, int start, int value) {

@@ -1,7 +1,11 @@
 package com.ruoyi.system.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+
 import com.ruoyi.system.domain.StgkVoltageCabinetMonitor;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 高压柜监控Mapper接口
@@ -49,7 +53,7 @@ public interface StgkVoltageCabinetMonitorMapper
      * @param id 高压柜监控主键
      * @return 结果
      */
-    public int deleteStgkVoltageCabinetMonitorById(Long id);
+    public int deleteStgkVoltageCabinetMonitorById(Integer id);
 
     /**
      * 批量删除高压柜监控
@@ -59,5 +63,7 @@ public interface StgkVoltageCabinetMonitorMapper
      */
     public int deleteStgkVoltageCabinetMonitorByIds(Long[] ids);
 
-    StgkVoltageCabinetMonitor selectStgkVoltageCabinetMonitorByCabinetId(Long cabinetId);
+    StgkVoltageCabinetMonitor selectStgkVoltageCabinetMonitorByCabinetId(Integer cabinetId);
+
+    List<Map<String, BigDecimal>> getCurve(@Param("cabinetId") Long cabinetId, @Param("column") String column);
 }

@@ -1,6 +1,9 @@
 package com.ruoyi.system.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.StgkVoltageCabinetMonitorMapper;
@@ -86,13 +89,18 @@ public class StgkVoltageCabinetMonitorServiceImpl implements IStgkVoltageCabinet
      * @return 结果
      */
     @Override
-    public int deleteStgkVoltageCabinetMonitorById(Long id)
+    public int deleteStgkVoltageCabinetMonitorById(Integer id)
     {
         return stgkVoltageCabinetMonitorMapper.deleteStgkVoltageCabinetMonitorById(id);
     }
 
     @Override
-    public StgkVoltageCabinetMonitor selectStgkVoltageCabinetMonitorByCabinetId(Long id) {
+    public StgkVoltageCabinetMonitor selectStgkVoltageCabinetMonitorByCabinetId(Integer id) {
         return stgkVoltageCabinetMonitorMapper.selectStgkVoltageCabinetMonitorByCabinetId(id);
+    }
+
+    @Override
+    public List<Map<String, BigDecimal>> getCurve(Long cabinetId,String column) {
+        return stgkVoltageCabinetMonitorMapper.getCurve(cabinetId,column);
     }
 }

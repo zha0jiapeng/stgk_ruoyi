@@ -144,6 +144,11 @@
             <version>2.9.2</version>
         </dependency>
         <!-- 串口通信  end-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.2</version>
+        </dependency>
 
     </dependencies>
 

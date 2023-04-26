@@ -84,4 +84,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
+    <select id="selectStgkRoomByName" parameterType="Long" resultMap="StgkRoomResult">
+        <include refid="selectStgkRoomVo"/>
+        where room_name = #{roomName}
+    </select>
+
 </mapper>

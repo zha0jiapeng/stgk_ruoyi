@@ -23,7 +23,7 @@ public class StgkVoltageCabinetMonitor extends BaseEntity
 
     /** 所属配电室id */
     @Excel(name = "所属配电室id")
-    private Long cabinetId;
+    private Integer cabinetId;
 
     /** A相电流 */
     @Excel(name = "A相电流")
@@ -127,12 +127,12 @@ public class StgkVoltageCabinetMonitor extends BaseEntity
     {
         return id;
     }
-    public void setCabinetId(Long cabinetId) 
+    public void setCabinetId(Integer cabinetId)
     {
         this.cabinetId = cabinetId;
     }
 
-    public Long getCabinetId() 
+    public Integer getCabinetId()
     {
         return cabinetId;
     }

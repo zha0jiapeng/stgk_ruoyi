@@ -79,6 +79,10 @@ public class StgkRoomController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody StgkRoom stgkRoom)
     {
+        StgkRoom room = stgkRoomService.selectStgkRoomByName(stgkRoom.getRoomName());
+        if(room!=null){
+            return AjaxResult.error("配电室名称已存在！");
+        }
         return toAjax(stgkRoomService.insertStgkRoom(stgkRoom));
     }
 
@@ -90,6 +94,10 @@ public class StgkRoomController extends BaseController
     @PutMapping
     public AjaxResult edit(@RequestBody StgkRoom stgkRoom)
     {
+        StgkRoom room = stgkRoomService.selectStgkRoomByName(stgkRoom.getRoomName());
+        if(room!=null&& !stgkRoom.getId().equals(room.getId())){
+            return AjaxResult.error("配电室名称已存在！");
+        }
         return toAjax(stgkRoomService.updateStgkRoom(stgkRoom));
     }
 

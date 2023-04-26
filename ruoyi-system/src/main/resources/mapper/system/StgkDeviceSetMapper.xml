@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
     
-    <select id="selectStgkDeviceSetById" parameterType="Long" resultMap="StgkDeviceSetResult">
+    <select id="selectStgkDeviceSetById" parameterType="Integer" resultMap="StgkDeviceSetResult">
         <include refid="selectStgkDeviceSetVo"/>
         where id = #{id}
     </select>
@@ -79,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </update>
 
-    <delete id="deleteStgkDeviceSetById" parameterType="Long">
+    <delete id="deleteStgkDeviceSetById" parameterType="Integer">
         delete from stgk_device_set where id = #{id}
     </delete>
 
@@ -89,4 +89,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
+
+    <select id="selectStgkDeviceSetByTypeIdAndDeviceId" parameterType="Integer" resultMap="StgkDeviceSetResult">
+        <include refid="selectStgkDeviceSetVo"/>
+        where
+        type_id = #{typeId}
+        and device_id = #{deviceId}
+    </select>
 </mapper>

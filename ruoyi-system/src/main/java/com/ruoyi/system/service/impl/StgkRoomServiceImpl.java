@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.system.domain.StgkDeviceSet;
 import com.ruoyi.system.domain.StgkRoomMonitor;
@@ -23,7 +25,7 @@ import com.ruoyi.system.service.IStgkRoomService;
  * @date 2023-04-23
  */
 @Service
-public class StgkRoomServiceImpl implements IStgkRoomService 
+public class StgkRoomServiceImpl extends ServiceImpl<StgkRoomMapper, StgkRoom> implements IStgkRoomService
 {
     @Autowired
     private StgkRoomMapper stgkRoomMapper;
@@ -42,11 +44,15 @@ public class StgkRoomServiceImpl implements IStgkRoomService
     public StgkRoom selectStgkRoomById(Long id)
     {
         StgkRoom stgkRoom = stgkRoomMapper.selectStgkRoomById(id);
-        StgkRoomMonitor roomMonitor = stgkRoomMonitorService.selectStgkRoomMonitorByRoomIdLast1(id);
-        if(roomMonitor!=null) {
-            stgkRoom.setTemperature(roomMonitor.getTemperature());
-            stgkRoom.setHumidity(roomMonitor.getHumidity());
+        if(stgkRoom!=null){
+            StgkRoomMonitor one = stgkRoomMonitorService.getOne(new LambdaQueryWrapper<StgkRoomMonitor>().eq(StgkRoomMonitor::getRoomId, id)
+                    .orderByDesc(StgkRoomMonitor::getMonitorTime).last("limit 1"));
+            if(one!=null) {
+                stgkRoom.setHumidity(one.getHumidity());
+                stgkRoom.setTemperature(one.getTemperature());
+            }
         }
+
         return stgkRoom;
     }
 
@@ -115,5 +121,10 @@ public class StgkRoomServiceImpl implements IStgkRoomService
     @Override
     public List<Map<String, BigDecimal>> getTimeTemperatureAndHumidity(Long id) {
         return stgkRoomMonitorService.getTimeTemperatureAndHumidity(id);
+    }
+
+    @Override
+    public StgkRoom selectStgkRoomByName(String roomName) {
+        return stgkRoomMapper.selectStgkRoomByName(roomName);
     }
 }

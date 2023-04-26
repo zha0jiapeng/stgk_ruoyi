@@ -1,6 +1,9 @@
 package com.ruoyi.system.service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+
 import com.ruoyi.system.domain.StgkVoltageCabinet;
 
 /**
@@ -58,4 +61,8 @@ public interface IStgkVoltageCabinetService
      * @return 结果
      */
     public int deleteStgkVoltageCabinetById(Long id);
+
+    StgkVoltageCabinet selectStgkVoltageCabinetByName(String cabinetName);
+
+    List<Map<String, BigDecimal>> getCurve(Long id,String column);
 }

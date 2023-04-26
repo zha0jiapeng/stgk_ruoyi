@@ -17,11 +17,11 @@ public class StgkVoltageCabinet extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 自增id */
-    private Long id;
+    private Integer id;
 
     /** 所属配电室id */
     @Excel(name = "所属配电室id")
-    private Long roomId;
+    private Integer roomId;
 
     /** 高压柜名称 */
     @Excel(name = "高压柜名称")
@@ -43,21 +43,21 @@ public class StgkVoltageCabinet extends BaseEntity
     @Excel(name = "额定功率")
     private BigDecimal power;
 
-    public void setId(Long id) 
+    public void setId(Integer id)
     {
         this.id = id;
     }
 
-    public Long getId() 
+    public Integer getId()
     {
         return id;
     }
-    public void setRoomId(Long roomId) 
+    public void setRoomId(Integer roomId)
     {
         this.roomId = roomId;
     }
 
-    public Long getRoomId() 
+    public Integer getRoomId()
     {
         return roomId;
     }

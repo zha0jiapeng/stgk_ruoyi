@@ -1,7 +1,15 @@
 package com.ruoyi.system.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ruoyi.common.enums.DeviceTypeEnum;
 import com.ruoyi.common.utils.DateUtils;
+import com.ruoyi.system.domain.StgkVoltageCabinet;
+import com.ruoyi.system.service.IStgkVoltageCabinetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.StgkDeviceReportMapper;
@@ -15,11 +23,13 @@ import com.ruoyi.system.service.IStgkDeviceReportService;
  * @date 2023-04-25
  */
 @Service
-public class StgkDeviceReportServiceImpl implements IStgkDeviceReportService 
+public class StgkDeviceReportServiceImpl extends ServiceImpl<StgkDeviceReportMapper, StgkDeviceReport> implements IStgkDeviceReportService
 {
     @Autowired
     private StgkDeviceReportMapper stgkDeviceReportMapper;
 
+    @Autowired
+    private IStgkVoltageCabinetService voltageCabinetService;
     /**
      * 查询设备预警表
      * 
@@ -39,9 +49,21 @@ public class StgkDeviceReportServiceImpl implements IStgkDeviceReportService
      * @return 设备预警表
      */
     @Override
-    public List<StgkDeviceReport> selectStgkDeviceReportList(StgkDeviceReport stgkDeviceReport)
+    public List<StgkDeviceReport> selectStgkDeviceReportList(Integer roomId,StgkDeviceReport stgkDeviceReport)
     {
-        return stgkDeviceReportMapper.selectStgkDeviceReportList(stgkDeviceReport);
+        if(roomId !=null){
+            StgkVoltageCabinet q = new StgkVoltageCabinet();
+            q.setRoomId(roomId);
+            List<StgkVoltageCabinet> stgkVoltageCabinets = voltageCabinetService.selectStgkVoltageCabinetList(q);
+            if(stgkVoltageCabinets!=null && stgkVoltageCabinets.size()!=0){
+                List<Integer> Ids = stgkVoltageCabinets.stream().map(StgkVoltageCabinet::getId).collect(Collectors.toList());
+                List<StgkDeviceReport> stgkDeviceReports = stgkDeviceReportMapper.selectList(new LambdaQueryWrapper<StgkDeviceReport>()
+                        .eq(StgkDeviceReport::getTypeId, DeviceTypeEnum.HIGH_VOLTAGE_CABINET.getCode())
+                        .in(Ids.size() != 0, StgkDeviceReport::getDeviceId, Ids));
+                return stgkDeviceReports;
+            }
+        }
+        return new ArrayList<>();
     }
 
     /**

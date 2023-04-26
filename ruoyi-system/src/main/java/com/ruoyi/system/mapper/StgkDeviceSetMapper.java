@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.StgkDeviceSet;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 设备通用设置表Mapper接口
@@ -58,4 +59,6 @@ public interface StgkDeviceSetMapper
      * @return 结果
      */
     public int deleteStgkDeviceSetByIds(Long[] ids);
+
+    StgkDeviceSet selectStgkDeviceSetByTypeIdAndDeviceId(@Param("typeId") Integer typeId,@Param("deviceId") Integer deviceId);
 }

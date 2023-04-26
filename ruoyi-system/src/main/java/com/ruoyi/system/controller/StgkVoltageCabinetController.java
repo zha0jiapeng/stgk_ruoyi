@@ -1,7 +1,11 @@
 package com.ruoyi.system.controller;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.common.utils.modbus.ModBusUtils;
+import com.ruoyi.system.domain.StgkVoltageCabinetMonitor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,6 +81,10 @@ public class StgkVoltageCabinetController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody StgkVoltageCabinet stgkVoltageCabinet)
     {
+        StgkVoltageCabinet exist = stgkVoltageCabinetService.selectStgkVoltageCabinetByName(stgkVoltageCabinet.getCabinetName());
+        if(exist!=null){
+            return AjaxResult.error("高压柜名已存在!");
+        }
         return toAjax(stgkVoltageCabinetService.insertStgkVoltageCabinet(stgkVoltageCabinet));
     }
 
@@ -88,6 +96,10 @@ public class StgkVoltageCabinetController extends BaseController
     @PutMapping
     public AjaxResult edit(@RequestBody StgkVoltageCabinet stgkVoltageCabinet)
     {
+        StgkVoltageCabinet exist = stgkVoltageCabinetService.selectStgkVoltageCabinetByName(stgkVoltageCabinet.getCabinetName());
+        if(exist!=null && !exist.getId().equals(stgkVoltageCabinet.getId())){
+            return AjaxResult.error("高压柜名已存在!");
+        }
         return toAjax(stgkVoltageCabinetService.updateStgkVoltageCabinet(stgkVoltageCabinet));
     }
 
@@ -101,4 +113,43 @@ public class StgkVoltageCabinetController extends BaseController
     {
         return toAjax(stgkVoltageCabinetService.deleteStgkVoltageCabinetByIds(ids));
     }
+
+    /**
+     * 获取高压柜的曲线图
+     */
+    @PreAuthorize("@ss.hasPermi('system:cabinet:query')")
+    @GetMapping(value = "/getCurve/{id}")
+    public AjaxResult getCurve(@PathVariable("id") Long id,String column)
+    {
+        if(column==null){
+            return error("查询行不能为空");
+        }
+        try {
+           StgkVoltageCabinetMonitor.class.getDeclaredField(column);
+        } catch (NoSuchFieldException e) {
+            return error("非法查询行");
+        }
+        return success(stgkVoltageCabinetService.getCurve(id,column));
+    }
+
+    /**
+     * 获取控制状态
+     */
+    @PreAuthorize("@ss.hasPermi('system:cabinet:query')")
+    @GetMapping(value = "/getControlState/{id}")
+    public AjaxResult getControlState(@PathVariable("id") Long id)
+    {
+        if(id==null){
+            return error("id为空！");
+        }
+        short[] shorts = ModBusUtils.readHoldingRegisters(new ModBusUtils().initConnect(), 128, 0, 80);
+        if(shorts.length==0){
+
+        }
+        return success();
+    }
+
+
+
+
 }

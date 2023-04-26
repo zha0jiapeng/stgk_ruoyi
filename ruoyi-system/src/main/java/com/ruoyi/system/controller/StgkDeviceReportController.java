@@ -38,26 +38,26 @@ public class StgkDeviceReportController extends BaseController
      * 查询设备预警表列表
      */
     @PreAuthorize("@ss.hasPermi('system:deviceReport:list')")
-    @GetMapping("/list")
-    public TableDataInfo list(StgkDeviceReport stgkDeviceReport)
+    @GetMapping("/list/{roomId}")
+    public TableDataInfo list(@PathVariable("roomId") Integer roomId,StgkDeviceReport stgkDeviceReport)
     {
         startPage();
-        List<StgkDeviceReport> list = stgkDeviceReportService.selectStgkDeviceReportList(stgkDeviceReport);
+        List<StgkDeviceReport> list = stgkDeviceReportService.selectStgkDeviceReportList(roomId,stgkDeviceReport);
         return getDataTable(list);
     }
 
-    /**
-     * 导出设备预警表列表
-     */
-    @PreAuthorize("@ss.hasPermi('system:deviceReport:export')")
-    @Log(title = "设备预警表", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public void export(HttpServletResponse response, StgkDeviceReport stgkDeviceReport)
-    {
-        List<StgkDeviceReport> list = stgkDeviceReportService.selectStgkDeviceReportList(stgkDeviceReport);
-        ExcelUtil<StgkDeviceReport> util = new ExcelUtil<StgkDeviceReport>(StgkDeviceReport.class);
-        util.exportExcel(response, list, "设备预警表数据");
-    }
+//    /**
+//     * 导出设备预警表列表
+//     */
+//    @PreAuthorize("@ss.hasPermi('system:deviceReport:export')")
+//    @Log(title = "设备预警表", businessType = BusinessType.EXPORT)
+//    @PostMapping("/export")
+//    public void export(HttpServletResponse response, StgkDeviceReport stgkDeviceReport)
+//    {
+//        List<StgkDeviceReport> list = stgkDeviceReportService.selectStgkDeviceReportList(stgkDeviceReport);
+//        ExcelUtil<StgkDeviceReport> util = new ExcelUtil<StgkDeviceReport>(StgkDeviceReport.class);
+//        util.exportExcel(response, list, "设备预警表数据");
+//    }
 
     /**
      * 获取设备预警表详细信息

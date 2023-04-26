@@ -1,6 +1,8 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
+
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoyi.system.domain.StgkDeviceReport;
 
 /**
@@ -9,7 +11,7 @@ import com.ruoyi.system.domain.StgkDeviceReport;
  * @author ruoyi
  * @date 2023-04-25
  */
-public interface IStgkDeviceReportService 
+public interface IStgkDeviceReportService extends IService<StgkDeviceReport>
 {
     /**
      * 查询设备预警表
@@ -25,7 +27,7 @@ public interface IStgkDeviceReportService
      * @param stgkDeviceReport 设备预警表
      * @return 设备预警表集合
      */
-    public List<StgkDeviceReport> selectStgkDeviceReportList(StgkDeviceReport stgkDeviceReport);
+    public List<StgkDeviceReport> selectStgkDeviceReportList(Integer roomId,StgkDeviceReport stgkDeviceReport);
 
     /**
      * 新增设备预警表
