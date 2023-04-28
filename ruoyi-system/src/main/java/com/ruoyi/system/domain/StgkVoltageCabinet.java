@@ -1,6 +1,10 @@
 package com.ruoyi.system.domain;
 
 import java.math.BigDecimal;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
@@ -12,11 +16,12 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * @author ruoyi
  * @date 2023-04-25
  */
+@Data
 public class StgkVoltageCabinet extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 自增id */
+    /** 合闸位移 */
     private Integer id;
 
     /** 所属配电室id */
@@ -43,84 +48,65 @@ public class StgkVoltageCabinet extends BaseEntity
     @Excel(name = "额定功率")
     private BigDecimal power;
 
-    public void setId(Integer id)
-    {
-        this.id = id;
-    }
+    /** 分闸最小电流 */
+    @Excel(name = "分闸最小电流")
+    private BigDecimal trippingMinCurrent;
 
-    public Integer getId()
-    {
-        return id;
-    }
-    public void setRoomId(Integer roomId)
-    {
-        this.roomId = roomId;
-    }
+    /** 分闸最大电流 */
+    @Excel(name = "分闸最大电流")
+    private BigDecimal trippingMaxCurrent;
 
-    public Integer getRoomId()
-    {
-        return roomId;
-    }
-    public void setCabinetName(String cabinetName) 
-    {
-        this.cabinetName = cabinetName;
-    }
+    /** 合闸最小电流 */
+    @Excel(name = "合闸最小电流")
+    private BigDecimal closingMinCurrent;
 
-    public String getCabinetName() 
-    {
-        return cabinetName;
-    }
-    public void setCabinetStatus(Long cabinetStatus) 
-    {
-        this.cabinetStatus = cabinetStatus;
-    }
+    /** 合闸最大电流 */
+    @Excel(name = "合闸最大电流")
+    private BigDecimal closingMaxCurrent;
 
-    public Long getCabinetStatus() 
-    {
-        return cabinetStatus;
-    }
-    public void setCurrent(BigDecimal current) 
-    {
-        this.current = current;
-    }
+    /** 分闸时间最小值 */
+    private BigDecimal trippingMinTime;
 
-    public BigDecimal getCurrent() 
-    {
-        return current;
-    }
-    public void setVoltage(BigDecimal voltage) 
-    {
-        this.voltage = voltage;
-    }
+    /** 分闸时间最大值 */
+    @Excel(name = "分闸时间最大值")
+    private BigDecimal trippingMaxTime;
 
-    public BigDecimal getVoltage() 
-    {
-        return voltage;
-    }
-    public void setPower(BigDecimal power) 
-    {
-        this.power = power;
-    }
+    /** 合闸时间最小值 */
+    @Excel(name = "合闸时间最小值")
+    private BigDecimal closingMinTime;
 
-    public BigDecimal getPower() 
-    {
-        return power;
-    }
+    /** 合闸时间最大值 */
+    private BigDecimal closingMaxTime;
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("id", getId())
-            .append("roomId", getRoomId())
-            .append("cabinetName", getCabinetName())
-            .append("cabinetStatus", getCabinetStatus())
-            .append("current", getCurrent())
-            .append("voltage", getVoltage())
-            .append("power", getPower())
-            .append("createTime", getCreateTime())
-            .append("createBy", getCreateBy())
-            .append("updateTime", getUpdateTime())
-            .append("updateBy", getUpdateBy())
-            .toString();
-    }
+    /** 储能电流最小值 */
+
+    private BigDecimal storageMinCurrent;
+
+    /** 储能电流最大值 */
+    private BigDecimal storageMaxCurrent;
+
+    /** 分闸位移最小值 */
+    @Excel(name = "分闸位移最小值")
+    private BigDecimal trippingMinDisplacement;
+
+    /** 分闸位移最大值 */
+    @Excel(name = "分闸位移最大值")
+    private BigDecimal trippingMaxDisplacement;
+
+    /** 合闸位移最小值 */
+    @Excel(name = "合闸位移最小值")
+    private BigDecimal closingMinDisplacement;
+
+    /** 合闸位移最大值 */
+    @Excel(name = "合闸位移最大值")
+    private BigDecimal closingMaxDisplacement;
+
+    /** 合闸行程最小值 */
+    @Excel(name = "合闸行程最小值")
+    private BigDecimal closingMinTrip;
+
+    /** 合闸行程最大值 */
+    @Excel(name = "合闸行程最大值")
+    private BigDecimal closingMaxTrip;
+
 }

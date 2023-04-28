@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoyi.system.domain.StgkVoltageCabinet;
 
 /**
@@ -12,7 +13,7 @@ import com.ruoyi.system.domain.StgkVoltageCabinet;
  * @author ruoyi
  * @date 2023-04-25
  */
-public interface IStgkVoltageCabinetService 
+public interface IStgkVoltageCabinetService extends IService<StgkVoltageCabinet>
 {
     /**
      * 查询高压柜
@@ -20,7 +21,7 @@ public interface IStgkVoltageCabinetService
      * @param id 高压柜主键
      * @return 高压柜
      */
-    public StgkVoltageCabinet selectStgkVoltageCabinetById(Long id);
+    public  Map<String,Object> selectStgkVoltageCabinetById(Long id);
 
     /**
      * 查询高压柜列表

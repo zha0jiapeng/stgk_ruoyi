@@ -1,9 +1,14 @@
 package com.ruoyi.system.service.impl;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.StgkVoltageCabinetMonitorMapper;
@@ -17,7 +22,7 @@ import com.ruoyi.system.service.IStgkVoltageCabinetMonitorService;
  * @date 2023-04-25
  */
 @Service
-public class StgkVoltageCabinetMonitorServiceImpl implements IStgkVoltageCabinetMonitorService 
+public class StgkVoltageCabinetMonitorServiceImpl extends ServiceImpl<StgkVoltageCabinetMonitorMapper,StgkVoltageCabinetMonitor> implements IStgkVoltageCabinetMonitorService
 {
     @Autowired
     private StgkVoltageCabinetMonitorMapper stgkVoltageCabinetMonitorMapper;
@@ -31,7 +36,7 @@ public class StgkVoltageCabinetMonitorServiceImpl implements IStgkVoltageCabinet
     @Override
     public StgkVoltageCabinetMonitor selectStgkVoltageCabinetMonitorById(Long id)
     {
-        return stgkVoltageCabinetMonitorMapper.selectStgkVoltageCabinetMonitorById(id);
+        return stgkVoltageCabinetMonitorMapper.selectById(id);
     }
 
     /**
@@ -43,7 +48,8 @@ public class StgkVoltageCabinetMonitorServiceImpl implements IStgkVoltageCabinet
     @Override
     public List<StgkVoltageCabinetMonitor> selectStgkVoltageCabinetMonitorList(StgkVoltageCabinetMonitor stgkVoltageCabinetMonitor)
     {
-        return stgkVoltageCabinetMonitorMapper.selectStgkVoltageCabinetMonitorList(stgkVoltageCabinetMonitor);
+
+        return stgkVoltageCabinetMonitorMapper.selectList(new LambdaQueryWrapper<>());
     }
 
     /**
@@ -55,7 +61,7 @@ public class StgkVoltageCabinetMonitorServiceImpl implements IStgkVoltageCabinet
     @Override
     public int insertStgkVoltageCabinetMonitor(StgkVoltageCabinetMonitor stgkVoltageCabinetMonitor)
     {
-        return stgkVoltageCabinetMonitorMapper.insertStgkVoltageCabinetMonitor(stgkVoltageCabinetMonitor);
+        return stgkVoltageCabinetMonitorMapper.insert(stgkVoltageCabinetMonitor);
     }
 
     /**
@@ -67,7 +73,7 @@ public class StgkVoltageCabinetMonitorServiceImpl implements IStgkVoltageCabinet
     @Override
     public int updateStgkVoltageCabinetMonitor(StgkVoltageCabinetMonitor stgkVoltageCabinetMonitor)
     {
-        return stgkVoltageCabinetMonitorMapper.updateStgkVoltageCabinetMonitor(stgkVoltageCabinetMonitor);
+        return stgkVoltageCabinetMonitorMapper.update(stgkVoltageCabinetMonitor,new LambdaUpdateWrapper<StgkVoltageCabinetMonitor>().eq(StgkVoltageCabinetMonitor::getId,stgkVoltageCabinetMonitor.getCabinetId()));
     }
 
     /**
@@ -79,7 +85,7 @@ public class StgkVoltageCabinetMonitorServiceImpl implements IStgkVoltageCabinet
     @Override
     public int deleteStgkVoltageCabinetMonitorByIds(Long[] ids)
     {
-        return stgkVoltageCabinetMonitorMapper.deleteStgkVoltageCabinetMonitorByIds(ids);
+        return stgkVoltageCabinetMonitorMapper.deleteBatchIds(new ArrayList<>(Arrays.asList(ids)));
     }
 
     /**
@@ -91,12 +97,16 @@ public class StgkVoltageCabinetMonitorServiceImpl implements IStgkVoltageCabinet
     @Override
     public int deleteStgkVoltageCabinetMonitorById(Integer id)
     {
-        return stgkVoltageCabinetMonitorMapper.deleteStgkVoltageCabinetMonitorById(id);
+        return stgkVoltageCabinetMonitorMapper.deleteById(id);
     }
 
     @Override
     public StgkVoltageCabinetMonitor selectStgkVoltageCabinetMonitorByCabinetId(Integer id) {
-        return stgkVoltageCabinetMonitorMapper.selectStgkVoltageCabinetMonitorByCabinetId(id);
+        LambdaQueryWrapper<StgkVoltageCabinetMonitor> q = new LambdaQueryWrapper<>();
+                q.eq(StgkVoltageCabinetMonitor::getCabinetId,id);
+                q.orderByDesc(StgkVoltageCabinetMonitor::getMonitorTime);
+                q.last("limit 1");
+        return stgkVoltageCabinetMonitorMapper.selectOne(q);
     }
 
     @Override

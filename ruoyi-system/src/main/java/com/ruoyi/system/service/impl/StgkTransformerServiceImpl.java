@@ -1,6 +1,7 @@
 package com.ruoyi.system.service.impl;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -74,7 +75,7 @@ public class StgkTransformerServiceImpl implements IStgkTransformerService
     @Override
     public int insertStgkTransformer(StgkTransformer stgkTransformer)
     {
-        stgkTransformer.setCreateTime(DateUtils.getNowDate());
+        stgkTransformer.setCreateTime(LocalDateTime.now().withSecond(0).withNano(0));
         return stgkTransformerMapper.insertStgkTransformer(stgkTransformer);
     }
 
@@ -87,7 +88,7 @@ public class StgkTransformerServiceImpl implements IStgkTransformerService
     @Override
     public int updateStgkTransformer(StgkTransformer stgkTransformer)
     {
-        stgkTransformer.setUpdateTime(DateUtils.getNowDate());
+        stgkTransformer.setUpdateTime(LocalDateTime.now().withSecond(0).withNano(0));
         return stgkTransformerMapper.updateStgkTransformer(stgkTransformer);
     }
 

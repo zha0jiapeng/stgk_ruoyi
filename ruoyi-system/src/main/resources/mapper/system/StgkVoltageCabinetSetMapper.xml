@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StgkVoltageCabinetSetMapper">
+    
+    <resultMap type="StgkVoltageCabinetSet" id="StgkVoltageCabinetSetResult">
+        <result property="id"    column="id"    />
+        <result property="cabinetId"    column="cabinet_id"    />
+        <result property="aCurrent"    column="a_current"    />
+        <result property="aVoltage"    column="a_voltage"    />
+        <result property="bCurrent"    column="b_current"    />
+        <result property="bVoltage"    column="b_voltage"    />
+        <result property="cCurrent"    column="c_current"    />
+        <result property="cVoltage"    column="c_voltage"    />
+        <result property="activePower"    column="active_power"    />
+        <result property="uabVoltage"    column="uab_voltage"    />
+        <result property="reactivePower"    column="reactive_power"    />
+        <result property="uacVoltage"    column="uac_voltage"    />
+        <result property="powerFactor"    column="power_factor"    />
+        <result property="ubcVoltage"    column="ubc_voltage"    />
+        <result property="temperature"    column="temperature"    />
+        <result property="humidity"    column="humidity"    />
+        <result property="dischargeCapacity"    column="discharge_capacity"    />
+        <result property="dischargeFrequency"    column="discharge_frequency"    />
+        <result property="breakerUpATemperature"    column="breaker_up_a_temperature"    />
+        <result property="breakerUpBTemperature"    column="breaker_up_b_temperature"    />
+        <result property="breakerUpCTemperature"    column="breaker_up_c_temperature"    />
+        <result property="breakerDownATemperature"    column="breaker_down_a_temperature"    />
+        <result property="breakerDownBTemperature"    column="breaker_down_b_temperature"    />
+        <result property="breakerDownCTemperature"    column="breaker_down_c_temperature"    />
+        <result property="breakerOutATemperature"    column="breaker_out_a_temperature"    />
+        <result property="breakerOutBTemperature"    column="breaker_out_b_temperature"    />
+        <result property="breakerOutCTemperature"    column="breaker_out_c_temperature"    />
+        <result property="breakerUpReportTemperature"    column="breaker_up_report_temperature"    />
+        <result property="breakerOutReportTemperature"    column="breaker_out_report_temperature"    />
+        <result property="closingCoilCurrent"    column="closing_coil_current"    />
+        <result property="openingCoilCurrent"    column="opening_coil_current"    />
+        <result property="storageMotorCurrent"    column="storage_motor_current"    />
+        <result property="displacement"    column="displacement"    />
+        <result property="trip"    column="trip"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+
+    <sql id="selectStgkVoltageCabinetSetVo">
+        select id, cabinet_id, a_current, a_voltage, b_current, b_voltage, c_current, c_voltage, active_power, uab_voltage, reactive_power, uac_voltage, power_factor, ubc_voltage, temperature, humidity, discharge_capacity, discharge_frequency, breaker_up_a_temperature, breaker_up_b_temperature, breaker_up_c_temperature, breaker_down_a_temperature, breaker_down_b_temperature, breaker_down_c_temperature, breaker_out_a_temperature, breaker_out_b_temperature, breaker_out_c_temperature, breaker_up_report_temperature, breaker_out_report_temperature, closing_coil_current, opening_coil_current, storage_motor_current, displacement, trip, create_time, create_by, update_time, update_by from stgk_voltage_cabinet_set
+    </sql>
+
+    <select id="selectStgkVoltageCabinetSetList" parameterType="StgkVoltageCabinetSet" resultMap="StgkVoltageCabinetSetResult">
+        <include refid="selectStgkVoltageCabinetSetVo"/>
+        <where>  
+            <if test="cabinetId != null "> and cabinet_id = #{cabinetId}</if>
+            <if test="aCurrent != null "> and a_current = #{aCurrent}</if>
+            <if test="aVoltage != null "> and a_voltage = #{aVoltage}</if>
+            <if test="bCurrent != null "> and b_current = #{bCurrent}</if>
+            <if test="bVoltage != null "> and b_voltage = #{bVoltage}</if>
+            <if test="cCurrent != null "> and c_current = #{cCurrent}</if>
+            <if test="cVoltage != null "> and c_voltage = #{cVoltage}</if>
+            <if test="activePower != null "> and active_power = #{activePower}</if>
+            <if test="uabVoltage != null "> and uab_voltage = #{uabVoltage}</if>
+            <if test="reactivePower != null "> and reactive_power = #{reactivePower}</if>
+            <if test="uacVoltage != null "> and uac_voltage = #{uacVoltage}</if>
+            <if test="powerFactor != null "> and power_factor = #{powerFactor}</if>
+            <if test="ubcVoltage != null "> and ubc_voltage = #{ubcVoltage}</if>
+            <if test="temperature != null "> and temperature = #{temperature}</if>
+            <if test="humidity != null "> and humidity = #{humidity}</if>
+            <if test="dischargeCapacity != null "> and discharge_capacity = #{dischargeCapacity}</if>
+            <if test="dischargeFrequency != null "> and discharge_frequency = #{dischargeFrequency}</if>
+            <if test="breakerUpATemperature != null "> and breaker_up_a_temperature = #{breakerUpATemperature}</if>
+            <if test="breakerUpBTemperature != null "> and breaker_up_b_temperature = #{breakerUpBTemperature}</if>
+            <if test="breakerUpCTemperature != null "> and breaker_up_c_temperature = #{breakerUpCTemperature}</if>
+            <if test="breakerDownATemperature != null "> and breaker_down_a_temperature = #{breakerDownATemperature}</if>
+            <if test="breakerDownBTemperature != null "> and breaker_down_b_temperature = #{breakerDownBTemperature}</if>
+            <if test="breakerDownCTemperature != null "> and breaker_down_c_temperature = #{breakerDownCTemperature}</if>
+            <if test="breakerOutATemperature != null "> and breaker_out_a_temperature = #{breakerOutATemperature}</if>
+            <if test="breakerOutBTemperature != null "> and breaker_out_b_temperature = #{breakerOutBTemperature}</if>
+            <if test="breakerOutCTemperature != null "> and breaker_out_c_temperature = #{breakerOutCTemperature}</if>
+            <if test="breakerUpReportTemperature != null "> and breaker_up_report_temperature = #{breakerUpReportTemperature}</if>
+            <if test="breakerOutReportTemperature != null "> and breaker_out_report_temperature = #{breakerOutReportTemperature}</if>
+            <if test="closingCoilCurrent != null "> and closing_coil_current = #{closingCoilCurrent}</if>
+            <if test="openingCoilCurrent != null "> and opening_coil_current = #{openingCoilCurrent}</if>
+            <if test="storageMotorCurrent != null "> and storage_motor_current = #{storageMotorCurrent}</if>
+            <if test="displacement != null "> and displacement = #{displacement}</if>
+            <if test="trip != null "> and trip = #{trip}</if>
+        </where>
+    </select>
+    
+    <select id="selectStgkVoltageCabinetSetById" parameterType="Long" resultMap="StgkVoltageCabinetSetResult">
+        <include refid="selectStgkVoltageCabinetSetVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStgkVoltageCabinetSet" parameterType="StgkVoltageCabinetSet" useGeneratedKeys="true" keyProperty="id">
+        insert into stgk_voltage_cabinet_set
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cabinetId != null">cabinet_id,</if>
+            <if test="aCurrent != null">a_current,</if>
+            <if test="aVoltage != null">a_voltage,</if>
+            <if test="bCurrent != null">b_current,</if>
+            <if test="bVoltage != null">b_voltage,</if>
+            <if test="cCurrent != null">c_current,</if>
+            <if test="cVoltage != null">c_voltage,</if>
+            <if test="activePower != null">active_power,</if>
+            <if test="uabVoltage != null">uab_voltage,</if>
+            <if test="reactivePower != null">reactive_power,</if>
+            <if test="uacVoltage != null">uac_voltage,</if>
+            <if test="powerFactor != null">power_factor,</if>
+            <if test="ubcVoltage != null">ubc_voltage,</if>
+            <if test="temperature != null">temperature,</if>
+            <if test="humidity != null">humidity,</if>
+            <if test="dischargeCapacity != null">discharge_capacity,</if>
+            <if test="dischargeFrequency != null">discharge_frequency,</if>
+            <if test="breakerUpATemperature != null">breaker_up_a_temperature,</if>
+            <if test="breakerUpBTemperature != null">breaker_up_b_temperature,</if>
+            <if test="breakerUpCTemperature != null">breaker_up_c_temperature,</if>
+            <if test="breakerDownATemperature != null">breaker_down_a_temperature,</if>
+            <if test="breakerDownBTemperature != null">breaker_down_b_temperature,</if>
+            <if test="breakerDownCTemperature != null">breaker_down_c_temperature,</if>
+            <if test="breakerOutATemperature != null">breaker_out_a_temperature,</if>
+            <if test="breakerOutBTemperature != null">breaker_out_b_temperature,</if>
+            <if test="breakerOutCTemperature != null">breaker_out_c_temperature,</if>
+            <if test="breakerUpReportTemperature != null">breaker_up_report_temperature,</if>
+            <if test="breakerOutReportTemperature != null">breaker_out_report_temperature,</if>
+            <if test="closingCoilCurrent != null">closing_coil_current,</if>
+            <if test="openingCoilCurrent != null">opening_coil_current,</if>
+            <if test="storageMotorCurrent != null">storage_motor_current,</if>
+            <if test="displacement != null">displacement,</if>
+            <if test="trip != null">trip,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cabinetId != null">#{cabinetId},</if>
+            <if test="aCurrent != null">#{aCurrent},</if>
+            <if test="aVoltage != null">#{aVoltage},</if>
+            <if test="bCurrent != null">#{bCurrent},</if>
+            <if test="bVoltage != null">#{bVoltage},</if>
+            <if test="cCurrent != null">#{cCurrent},</if>
+            <if test="cVoltage != null">#{cVoltage},</if>
+            <if test="activePower != null">#{activePower},</if>
+            <if test="uabVoltage != null">#{uabVoltage},</if>
+            <if test="reactivePower != null">#{reactivePower},</if>
+            <if test="uacVoltage != null">#{uacVoltage},</if>
+            <if test="powerFactor != null">#{powerFactor},</if>
+            <if test="ubcVoltage != null">#{ubcVoltage},</if>
+            <if test="temperature != null">#{temperature},</if>
+            <if test="humidity != null">#{humidity},</if>
+            <if test="dischargeCapacity != null">#{dischargeCapacity},</if>
+            <if test="dischargeFrequency != null">#{dischargeFrequency},</if>
+            <if test="breakerUpATemperature != null">#{breakerUpATemperature},</if>
+            <if test="breakerUpBTemperature != null">#{breakerUpBTemperature},</if>
+            <if test="breakerUpCTemperature != null">#{breakerUpCTemperature},</if>
+            <if test="breakerDownATemperature != null">#{breakerDownATemperature},</if>
+            <if test="breakerDownBTemperature != null">#{breakerDownBTemperature},</if>
+            <if test="breakerDownCTemperature != null">#{breakerDownCTemperature},</if>
+            <if test="breakerOutATemperature != null">#{breakerOutATemperature},</if>
+            <if test="breakerOutBTemperature != null">#{breakerOutBTemperature},</if>
+            <if test="breakerOutCTemperature != null">#{breakerOutCTemperature},</if>
+            <if test="breakerUpReportTemperature != null">#{breakerUpReportTemperature},</if>
+            <if test="breakerOutReportTemperature != null">#{breakerOutReportTemperature},</if>
+            <if test="closingCoilCurrent != null">#{closingCoilCurrent},</if>
+            <if test="openingCoilCurrent != null">#{openingCoilCurrent},</if>
+            <if test="storageMotorCurrent != null">#{storageMotorCurrent},</if>
+            <if test="displacement != null">#{displacement},</if>
+            <if test="trip != null">#{trip},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStgkVoltageCabinetSet" parameterType="StgkVoltageCabinetSet">
+        update stgk_voltage_cabinet_set
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cabinetId != null">cabinet_id = #{cabinetId},</if>
+            <if test="aCurrent != null">a_current = #{aCurrent},</if>
+            <if test="aVoltage != null">a_voltage = #{aVoltage},</if>
+            <if test="bCurrent != null">b_current = #{bCurrent},</if>
+            <if test="bVoltage != null">b_voltage = #{bVoltage},</if>
+            <if test="cCurrent != null">c_current = #{cCurrent},</if>
+            <if test="cVoltage != null">c_voltage = #{cVoltage},</if>
+            <if test="activePower != null">active_power = #{activePower},</if>
+            <if test="uabVoltage != null">uab_voltage = #{uabVoltage},</if>
+            <if test="reactivePower != null">reactive_power = #{reactivePower},</if>
+            <if test="uacVoltage != null">uac_voltage = #{uacVoltage},</if>
+            <if test="powerFactor != null">power_factor = #{powerFactor},</if>
+            <if test="ubcVoltage != null">ubc_voltage = #{ubcVoltage},</if>
+            <if test="temperature != null">temperature = #{temperature},</if>
+            <if test="humidity != null">humidity = #{humidity},</if>
+            <if test="dischargeCapacity != null">discharge_capacity = #{dischargeCapacity},</if>
+            <if test="dischargeFrequency != null">discharge_frequency = #{dischargeFrequency},</if>
+            <if test="breakerUpATemperature != null">breaker_up_a_temperature = #{breakerUpATemperature},</if>
+            <if test="breakerUpBTemperature != null">breaker_up_b_temperature = #{breakerUpBTemperature},</if>
+            <if test="breakerUpCTemperature != null">breaker_up_c_temperature = #{breakerUpCTemperature},</if>
+            <if test="breakerDownATemperature != null">breaker_down_a_temperature = #{breakerDownATemperature},</if>
+            <if test="breakerDownBTemperature != null">breaker_down_b_temperature = #{breakerDownBTemperature},</if>
+            <if test="breakerDownCTemperature != null">breaker_down_c_temperature = #{breakerDownCTemperature},</if>
+            <if test="breakerOutATemperature != null">breaker_out_a_temperature = #{breakerOutATemperature},</if>
+            <if test="breakerOutBTemperature != null">breaker_out_b_temperature = #{breakerOutBTemperature},</if>
+            <if test="breakerOutCTemperature != null">breaker_out_c_temperature = #{breakerOutCTemperature},</if>
+            <if test="breakerUpReportTemperature != null">breaker_up_report_temperature = #{breakerUpReportTemperature},</if>
+            <if test="breakerOutReportTemperature != null">breaker_out_report_temperature = #{breakerOutReportTemperature},</if>
+            <if test="closingCoilCurrent != null">closing_coil_current = #{closingCoilCurrent},</if>
+            <if test="openingCoilCurrent != null">opening_coil_current = #{openingCoilCurrent},</if>
+            <if test="storageMotorCurrent != null">storage_motor_current = #{storageMotorCurrent},</if>
+            <if test="displacement != null">displacement = #{displacement},</if>
+            <if test="trip != null">trip = #{trip},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStgkVoltageCabinetSetById" parameterType="Long">
+        delete from stgk_voltage_cabinet_set where id = #{id}
+    </delete>
+
+    <delete id="deleteStgkVoltageCabinetSetByIds" parameterType="String">
+        delete from stgk_voltage_cabinet_set where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

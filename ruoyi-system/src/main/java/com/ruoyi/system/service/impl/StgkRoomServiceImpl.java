@@ -1,17 +1,15 @@
 package com.ruoyi.system.service.impl;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoyi.common.utils.DateUtils;
-import com.ruoyi.system.domain.StgkDeviceSet;
 import com.ruoyi.system.domain.StgkRoomMonitor;
-import com.ruoyi.system.service.IStgkDeviceSetService;
 import com.ruoyi.system.service.IStgkRoomMonitorService;
-import com.ruoyi.system.websocket.rtsp.MediaTransfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.StgkRoomMapper;
@@ -77,7 +75,7 @@ public class StgkRoomServiceImpl extends ServiceImpl<StgkRoomMapper, StgkRoom> i
     @Override
     public int insertStgkRoom(StgkRoom stgkRoom)
     {
-        stgkRoom.setCreateTime(DateUtils.getNowDate());
+        stgkRoom.setCreateTime(LocalDateTime.now().withSecond(0).withNano(0));
         return stgkRoomMapper.insertStgkRoom(stgkRoom);
     }
 
@@ -90,7 +88,7 @@ public class StgkRoomServiceImpl extends ServiceImpl<StgkRoomMapper, StgkRoom> i
     @Override
     public int updateStgkRoom(StgkRoom stgkRoom)
     {
-        stgkRoom.setUpdateTime(DateUtils.getNowDate());
+        stgkRoom.setUpdateTime(LocalDateTime.now().withSecond(0).withNano(0));
         return stgkRoomMapper.updateStgkRoom(stgkRoom);
     }
 

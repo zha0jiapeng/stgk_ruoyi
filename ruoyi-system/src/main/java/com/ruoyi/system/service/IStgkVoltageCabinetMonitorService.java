@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoyi.system.domain.StgkVoltageCabinetMonitor;
 
 /**
@@ -12,7 +13,7 @@ import com.ruoyi.system.domain.StgkVoltageCabinetMonitor;
  * @author ruoyi
  * @date 2023-04-25
  */
-public interface IStgkVoltageCabinetMonitorService 
+public interface IStgkVoltageCabinetMonitorService  extends IService<StgkVoltageCabinetMonitor>
 {
     /**
      * 查询高压柜监控

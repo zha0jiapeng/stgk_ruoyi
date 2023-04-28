@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StgkVoltageCabinetReportMapper">
+    
+    <resultMap type="StgkVoltageCabinetReport" id="StgkVoltageCabinetReportResult">
+        <result property="id"    column="id"    />
+        <result property="cabinetId"    column="cabinet_id"    />
+        <result property="monitorId"    column="monitor_id"    />
+        <result property="setValue"    column="set_value"    />
+        <result property="colunmValue"    column="colunm_value"    />
+        <result property="reportFieldName"    column="report_field_name"    />
+        <result property="reportFieldChinese"    column="report_field_chinese"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+
+    <sql id="selectStgkVoltageCabinetReportVo">
+        select id, cabinet_id, monitor_id, set_value, colunm_value, report_field_name, report_field_chinese, create_time, create_by, update_time, update_by from stgk_voltage_cabinet_report
+    </sql>
+
+    <select id="selectStgkVoltageCabinetReportList" parameterType="StgkVoltageCabinetReport" resultMap="StgkVoltageCabinetReportResult">
+        <include refid="selectStgkVoltageCabinetReportVo"/>
+        <where>  
+            <if test="cabinetId != null "> and cabinet_id = #{cabinetId}</if>
+            <if test="monitorId != null "> and monitor_id = #{monitorId}</if>
+            <if test="setValue != null "> and set_value = #{setValue}</if>
+            <if test="colunmValue != null "> and colunm_value = #{colunmValue}</if>
+            <if test="reportFieldName != null  and reportFieldName != ''"> and report_field_name like concat('%', #{reportFieldName}, '%')</if>
+            <if test="reportFieldChinese != null  and reportFieldChinese != ''"> and report_field_chinese = #{reportFieldChinese}</if>
+        </where>
+    </select>
+    
+    <select id="selectStgkVoltageCabinetReportById" parameterType="Long" resultMap="StgkVoltageCabinetReportResult">
+        <include refid="selectStgkVoltageCabinetReportVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertStgkVoltageCabinetReport" parameterType="StgkVoltageCabinetReport" useGeneratedKeys="true" keyProperty="id">
+        insert into stgk_voltage_cabinet_report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cabinetId != null">cabinet_id,</if>
+            <if test="monitorId != null">monitor_id,</if>
+            <if test="setValue != null">set_value,</if>
+            <if test="colunmValue != null">colunm_value,</if>
+            <if test="reportFieldName != null">report_field_name,</if>
+            <if test="reportFieldChinese != null">report_field_chinese,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cabinetId != null">#{cabinetId},</if>
+            <if test="monitorId != null">#{monitorId},</if>
+            <if test="setValue != null">#{setValue},</if>
+            <if test="colunmValue != null">#{colunmValue},</if>
+            <if test="reportFieldName != null">#{reportFieldName},</if>
+            <if test="reportFieldChinese != null">#{reportFieldChinese},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStgkVoltageCabinetReport" parameterType="StgkVoltageCabinetReport">
+        update stgk_voltage_cabinet_report
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cabinetId != null">cabinet_id = #{cabinetId},</if>
+            <if test="monitorId != null">monitor_id = #{monitorId},</if>
+            <if test="setValue != null">set_value = #{setValue},</if>
+            <if test="colunmValue != null">colunm_value = #{colunmValue},</if>
+            <if test="reportFieldName != null">report_field_name = #{reportFieldName},</if>
+            <if test="reportFieldChinese != null">report_field_chinese = #{reportFieldChinese},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStgkVoltageCabinetReportById" parameterType="Long">
+        delete from stgk_voltage_cabinet_report where id = #{id}
+    </delete>
+
+    <delete id="deleteStgkVoltageCabinetReportByIds" parameterType="String">
+        delete from stgk_voltage_cabinet_report where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
